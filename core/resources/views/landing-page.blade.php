@@ -18,8 +18,20 @@
     
 </head>
 <body>
+    <!-- NAVIGATION BLOCK -->
+    <div class="navigation-block" id="navigation-block">
+        <div>
+            <h4><i class="fas fa-times" id="navigation-button-close"></i></h4>
+        </div>
+        <div class="navigation-block-child">a</div>
+        <div class="navigation-block-child">a</div>
+        <div class="navigation-block-child">a</div>
+    </div>
+
     <!-- WRAPPER -->
     <div class="wrapper">
+
+        <!-- NAVIGATION-->
         <div class="nav z-depth-1">
             <!-- LOGO WRAPPER -->
             <div class="logo-wrapper">
@@ -51,14 +63,16 @@
 
                 <!-- HAMBURGER MENU WHEN SCREEN < 1000PX -->
                 <ul id="nav-media-small">
-                    <li>
+                    <li id="navigation-button">
                         <i class="fas fa-bars"></i>
                     </li>
                 </ul>
 
             </div>
         </div>
+        <!-- END NAVIGATION -->
 
+        <!-- CONTENT -->
         <div class="content">
             <div class="big-image">
                 <img src="{{ asset('asset\image\landing-page\lampion.webp') }}" alt="lampion.webp" class="z-depth-2">
@@ -70,7 +84,7 @@
                         <div id="flipdown" class="flipdown"></div>
                     </div>
                     <div class="card mt-5 swiper-container mySwiper">
-                        <h5 class="card-title text-center bg-danger p-2 text-white"><a>PENGUMUMAN</a></h5>
+                        <h5 class="card-title text-center p-2 text-white" style="background-color:#eb4034;"><a>PENGUMUMAN</a></h5>
                         <div class="swiper-wrapper">
                             <!-- Card content -->
                             <div class="card-body swiper-slide p-5">
@@ -138,7 +152,9 @@
             </div>
             
         </div>
+        <!-- END CONTENT -->
 
+        <!-- FOOTER -->
         <div class="footer" style='background-image: url("{{ url("") }}/asset/image/main_asset/footer.png")''>
             <div class="footer-content">
                 <div class="logo-wrapper">
@@ -148,36 +164,56 @@
                 </div>
                 <div class="contact text-white">
                     <div>
-                        <h5 class="mb-3">Contact Us</h5>
+                        <h5 class="mb-3 text-center">Contact Us</h5>
                     </div>
                     <div>
                         <small><i class="far fa-building"></i> Tourism Confucius Institute Udayana University</small>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small><i class="fas fa-map-marker-alt"></i> Gedung Argokompleks Lantai IV Kantor Tourism 
                         Confucius Institute, JL. P.B. Sudirman, Dauh Puri Klod, 
                         Kec. Denpasar Barat 80234</small>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small><i class="far fa-building"></i> Tourism Confucius Institute Udayana University</small>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small><i class="far fa-envelope"></i> Email: tci.unud.ac.id</small>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small><i class="fas fa-phone-alt"></i> Phone: +62 361 4722331</small>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-2">
                         <small><i class="fas fa-fax"></i> Fax: +62 361 4722331</small>
                     </div>
                 </div>
                 <div class="social-media text-white">
-                    Our Social Media
-                </div>                
+                    <div>
+                        <h5 class="mb-3 text-center">Social Media</h5>
+                    </div>
+                    <div class="mt-2">
+                        <small><i class="fab fa-facebook-f"></i> Facebook </small>
+                    </div>
+                    <div class="mt-2">
+                        <small><i class="fab fa-instagram"></i> Instagram </small>
+                    </div>
+                    <div class="mt-2">
+                        <small><i class="fab fa-twitter"></i> Twitter </small>
+                    </div>
+                    <div class="mt-2">
+                        <small><i class="fab fa-youtube"></i> Youtube Channel </small>
+                    </div>
+                </div>
+                <div class="copyright text-white text-center mt-3">
+                    <small>&copy; TCI Udayana 2021 | All Right Reserved</small>
+                </div>          
             </div>
         </div>
+        <!-- END FOOTER -->
+
     </div>
     <!-- END WRAPPER -->
+
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\bootstrap.min.js') }}"></script>
@@ -190,6 +226,14 @@
         $(document).ready(function(){
             let flipdown = new FlipDown(1625627296,'flipdown');
             flipdown.start();
+
+            $('#navigation-button').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+
+            $('#navigation-button-close').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
         });
        
     </script>
