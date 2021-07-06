@@ -32,7 +32,7 @@ background: #555;
         "footer"
     ;
     grid-template-columns: 1fr;
-    grid-template-rows: 80px auto 200px;
+    grid-template-rows: 80px auto auto;
     width: 100vw;
     min-height: 100vh;
     overflow-y: auto;
@@ -63,10 +63,11 @@ background: #555;
 .wrapper .nav .nav-wrapper{
     flex-grow: 5;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
     text-align: center;
-    padding: 10px 50px 10px 100px;
+    padding: 10px 0px 10px 0px;
 }
 
 .wrapper .nav .nav-wrapper ul{
@@ -74,56 +75,177 @@ background: #555;
     height: fit-content;
 }
 
+.wrapper .nav .nav-wrapper ul#nav-media-small{
+    display: none;
+}
+
 .wrapper .nav .nav-wrapper ul li{
     display: inline;
     margin: 0px 10px 0px 10px;
 }
-
-
+/* =================================================== CONTENT =================================================== */
 .wrapper .content{
     grid-area: content;
-    position: relative;
-    justify-content: center;
-    overflow: hidden;
+    display: grid;
+    grid-template-areas: 
+        "big-image real-content"
+    ;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 
-.wrapper .content{
-    grid-area: content;
-    position: relative;
-    justify-content: center;
+.wrapper .content .big-image{
+    grid-area: big-image;
     overflow: hidden;
+    position: relative;
 }
+
+.wrapper .content .big-image img{
+    display: block;
+    position: relative;
+    left: -10%;
+    top: -50%;
+    width: 100%;
+    height: 200%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.wrapper .content .real-content{
+    grid-area: real-content;
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide{
+    width: 50vw;
+    max-height: 300px;
+    overflow:auto
+}
+
+.mySwiper{
+    width: 50vw;
+    max-height: 300px;
+    overflow:auto
+}
+
+/* =================================================== FOOTER =================================================== */
 
 .wrapper .footer{
     grid-area: footer;
     position: relative;
-    justify-content: center;
     overflow: hidden;
-    background-color: black;
 }
 
 .wrapper .footer img{
+    z-index: -1;
     object-fit: cover;
+    width: 100%;
+}
+
+.wrapper .footer .footer-content{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+        "logo-wrapper contact social-media"
+    ;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.wrapper .footer .footer-content .logo-wrapper{
+    grid-area: logo-wrapper;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+.wrapper .footer .footer-content .logo-wrapper img{
+    object-fit: cover;
+    width: 80%;
+}
+
+.wrapper .footer .footer-content .contact{
+    grid-area: contact;
+    position: relative;
+    display: block;
+    padding: 10px 10px 10px 10px;
+}
+
+.wrapper .footer .footer-content .social-media{
+    grid-area: social-media;
 }
 
 @media only screen and (max-width: 1000px) {
+    .wrapper{
+        grid-template-rows: 80px auto auto;
+    }
+
+    .wrapper .nav .logo-wrapper{
+        width: 150px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .wrapper .nav .logo-wrapper img{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
+        margin: 0;
+        width: 80%;
+        object-fit: cover;
     }
 
     .wrapper .nav .nav-wrapper{
-        flex-grow: 3;
+        flex-grow: 5;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         text-align: center;
-        padding: 10px 50px 10px 10px;
+        padding: 30px 30px 10px 10px;
     }
 
+    .wrapper .nav .nav-wrapper ul#nav-media-wide{
+        display: none;
+    }
 
+    .wrapper .nav .nav-wrapper ul#nav-media-small{
+        display: block;
+    }
+
+    .wrapper .content{
+        grid-area: content;
+        display: grid;
+        grid-template-areas: 
+            "big-image"
+            "real-content"
+        ;
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px auto;
+    }
+
+    .wrapper .content .big-image{
+        grid-area: big-image;
+    }
+
+    .wrapper .content .big-image img{
+        display: block;
+        position: relative;
+        width: 120%;
+        height: 140%;
+        border-radius: 50%;
+        object-fit: cover;
+        left: -10%;
+        top: -50%;
+    }
+    
     .wrapper .footer img{
         object-fit: none;
         width: 100%;
@@ -131,8 +253,37 @@ background: #555;
         object-position: 50% 50%;
     }
 
-    .wrapper .nav .nav-wrapper ul{
-        visibility: hidden;
+    .wrapper .footer .footer-content{
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-areas: 
+            "logo-wrapper"
+            "contact"
+            "social-media"
+        ;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .wrapper .footer .footer-content .logo-wrapper{
+        height: auto;
+    }
+
+    .wrapper .footer .footer-content .logo-wrapper img{
+        width: 100%;
+    }
+
+    .swiper-slide{
+        width: 90vw;
+        max-height: 500px;
+        overflow:auto
+    }
+    
+    .mySwiper{
+        width: 90vw;
+        max-height: 500px;
+        overflow:auto
     }
         
 }
