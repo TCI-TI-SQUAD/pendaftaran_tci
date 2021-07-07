@@ -22,11 +22,12 @@
                 <input type="text" id="exampleForm2" class="form-control mt-1"> 
 
                 <button class="btn btn-block btn-success mt-5">REGISTER</button>
+                <a class="btn btn-block btn-danger mt-1" href="{{ route('user.landing-page') }}">BACK</a>
 
                 <p class="text-center mt-4">Dont have an account ? <a href="">Register Here</a></p>
                 <p class="text-center mt-1">Visit us on</p>
 
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mb-4">
                     <div class="m-1"><img style="height:30px;width:30px;position:relative;" src="{{ asset('asset\image\main_asset\logo-fb.png') }}" alt=""></div>
                     <div class="m-1"><img style="height:30px;width:30px;position:relative;" src="{{ asset('asset\image\main_asset\logo-ig.png') }}" alt=""></div>
                     <div class="m-1"><img style="height:30px;width:30px;position:relative;" src="{{ asset('asset\image\main_asset\logo-twitter.png') }}" alt=""></div>

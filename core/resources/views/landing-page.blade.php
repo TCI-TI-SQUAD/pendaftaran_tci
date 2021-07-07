@@ -1,49 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }}</title>
+@extends('layout.main-layout.main-layout')
 
-    <link href="{{ asset('asset\css\lading-page\user-landing-page.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset\vendor\mdbootstrap\css\bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset\vendor\mdbootstrap\css\mdb.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset\vendor\fontawesome\css\all.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    
-</head>
-<body>
-    <!-- NAVIGATION BLOCK -->
-    <div class="navigation-block" id="navigation-block">
-        <div>
-            <h4><i class="fas fa-times" id="navigation-button-close"></i></h4>
-        </div>
-        <div class="navigation-block-child">a</div>
-        <div class="navigation-block-child">a</div>
-        <div class="navigation-block-child">a</div>
-    </div>
+@push('css')
+<link href="{{ asset('asset\css\lading-page\user-landing-page.css') }}" rel="stylesheet">
+@endpush
 
-    <!-- WRAPPER -->
-    <div class="wrapper">
-
-        <!-- NAVIGATION-->
-        <div class="nav z-depth-1">
-            <!-- LOGO WRAPPER -->
-            <div class="logo-wrapper">
-                <img src="{{ asset('asset\image\main_asset\logo.png') }}" alt="">
+@section('navigation-small')
+            <div class="navigation-block-child mt-3">
+                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-home"></i></div>
+                    <div style="flex-grow:2;margin:10px;">Home</div>
             </div>
-            <!--  -->
-            <!-- NAV WRAPPER -->
-            <div class="nav-wrapper">
-                <!-- FULL MENU WHEN SCREEN > 1000PX -->
-                <ul id="nav-media-wide">
-                    <li>
-                        <a class="text-dark" href="">Home</a>
+        
+            <div class="navigation-block-child mt-3">
+                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-question"></i></div>
+                    <div style="flex-grow:2;margin:10px;">About</div>
+            </div>
+
+            <div class="navigation-block-child mt-3">
+                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-address-book"></i></div>
+                    <div style="flex-grow:2;margin:10px;">Contact</div>
+            </div>
+
+            <a href="{{ Route('user.login') }}" style="text-decoration:none;" class="text-dark">
+                <div class="navigation-block-child mt-3">
+                        <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-sign-in-alt"></i></div>
+                        <div style="flex-grow:2;margin:10px;">Log In</div>
+                </div>
+            </a>
+
+            <a href="{{ Route('user.register') }}" style="text-decoration:none;" class="text-dark">
+                <div class="navigation-block-child mt-3">
+                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-registered"></i></div>
+                    <div style="flex-grow:2;margin:10px;">Register</div>
+                </div>
+            </a>
+@endsection
+
+@section('navigation-wide')
+                    <li>        
+                        <a class="text-dark font-weight-bold" href="">Home</a>
                     </li>
                     <li>
                         <a class="text-dark" href="">About</a>
@@ -56,25 +50,13 @@
                     </li>
                     <li>
                         <a href="{{ Route('user.register') }}">
-                    <button type="button" class="btn btn-outline-success waves-effect">Register Here</button>
-                    </a>
+                            <button type="button" class="btn btn-outline-success waves-effect">Register Here</button>
+                        </a>
                     </li>
-                </ul>
+@endsection
 
-                <!-- HAMBURGER MENU WHEN SCREEN < 1000PX -->
-                <ul id="nav-media-small">
-                    <li id="navigation-button">
-                        <i class="fas fa-bars"></i>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-        <!-- END NAVIGATION -->
-
-        <!-- CONTENT -->
-        <div class="content">
-            <div class="big-image">
+@section('content')
+            <div class="big-image"> 
                 <img src="{{ asset('asset\image\landing-page\lampion.webp') }}" alt="lampion.webp" class="z-depth-2">
             </div>
 
@@ -150,81 +132,12 @@
 
                     </div>
             </div>
-            
-        </div>
-        <!-- END CONTENT -->
+@endsection
 
-        <!-- FOOTER -->
-        <div class="footer" style='background-image: url("{{ url("") }}/asset/image/main_asset/footer.png")''>
-            <div class="footer-content">
-                <div class="logo-wrapper">
-                    <div class="text-center">
-                        <img src="{{ asset('asset\image\main_asset\logo tci.png') }}" alt="">
-                    </div>
-                </div>
-                <div class="contact text-white">
-                    <div>
-                        <h5 class="mb-3 text-center">Contact Us</h5>
-                    </div>
-                    <div>
-                        <small><i class="far fa-building"></i> Tourism Confucius Institute Udayana University</small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fas fa-map-marker-alt"></i> Gedung Argokompleks Lantai IV Kantor Tourism 
-                        Confucius Institute, JL. P.B. Sudirman, Dauh Puri Klod, 
-                        Kec. Denpasar Barat 80234</small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="far fa-building"></i> Tourism Confucius Institute Udayana University</small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="far fa-envelope"></i> Email: tci.unud.ac.id</small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fas fa-phone-alt"></i> Phone: +62 361 4722331</small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fas fa-fax"></i> Fax: +62 361 4722331</small>
-                    </div>
-                </div>
-                <div class="social-media text-white">
-                    <div>
-                        <h5 class="mb-3 text-center">Social Media</h5>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-facebook-f"></i> Facebook </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-instagram"></i> Instagram </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-twitter"></i> Twitter </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-youtube"></i> Youtube Channel </small>
-                    </div>
-                </div>
-                <div class="copyright text-white text-center mt-3">
-                    <small>&copy; TCI Udayana 2021 | All Right Reserved</small>
-                </div>          
-            </div>
-        </div>
-        <!-- END FOOTER -->
-
-    </div>
-    <!-- END WRAPPER -->
-
-    <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\mdb.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset\vendor\fontawesome\js\all.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.js') }}"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <script>
+@push('js')
+<script>
         $(document).ready(function(){
-            let flipdown = new FlipDown(1625627296,'flipdown');
+            let flipdown = new FlipDown(1625774831,'flipdown');
             flipdown.start();
 
             $('#navigation-button').click(function(){
@@ -235,7 +148,6 @@
                 $('#navigation-block').toggleClass('active');
             })
         });
-       
     </script>
 
     <script>
@@ -246,5 +158,4 @@
             },
         });
     </script>
-</body>
-</html>
+@endpush

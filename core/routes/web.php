@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 // LANDING PAGE
 Route::get('/',function(){
     return view('landing-page');
-});
+})->name('user.landing-page');
 // AKHIR
 
 
@@ -30,6 +30,10 @@ Route::prefix('user')->group(function(){
     Route::get('/register', function () {
         return view('auth.user-register');
     })->name('user.register');
+
+    Route::get('/beranda', function () {
+        return view('user-dashboard.user-dashboard-beranda');
+    })->name('user.beranda');
 
 });
 // AKHIR

@@ -1,99 +1,3 @@
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 0px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-background: #555;
-}
-
-.wrapper{
-    display: grid;
-    grid-template-areas: 
-        "nav"
-        "content"
-        "footer"
-    ;
-    grid-template-columns: 1fr;
-    grid-template-rows: 80px auto auto;
-    width: 100vw;
-    min-height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.wrapper .nav{
-    grid-area: nav;
-    display: flex;
-    flex-direction: row;
-}
-
-.wrapper .nav .logo-wrapper{
-    flex-grow: 1;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.wrapper .nav .logo-wrapper img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-}
-
-.wrapper .nav .nav-wrapper{
-    flex-grow: 5;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: center;
-    padding: 10px 0px 10px 0px;
-}
-
-.wrapper .nav .nav-wrapper ul{
-    float: right;
-    height: fit-content;
-}
-
-.wrapper .nav .nav-wrapper ul#nav-media-small{
-    display: none;
-}
-
-.wrapper .nav .nav-wrapper ul li{
-    display: inline;
-    margin: 0px 10px 0px 10px;
-}
-/* =================================================== CONTENT =================================================== */
-.wrapper .content{
-    grid-area: content;
-    display: grid;
-    grid-template-areas: 
-        "big-image real-content"
-    ;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-}
-
 .wrapper .content .big-image{
     grid-area: big-image;
     overflow: hidden;
@@ -119,77 +23,19 @@ background: #555;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* max-height: 50vh; */
+    /* overflow: auto; */
 }
 
 .swiper-slide{
     width: 50vw;
     max-height: 300px;
-    overflow:auto
+    overflow-y: auto;
 }
 
 .mySwiper{
     width: 50vw;
     max-height: 300px;
-    overflow:auto
-}
-
-/* =================================================== FOOTER =================================================== */
-
-.wrapper .footer{
-    grid-area: footer;
-    position: relative;
-    overflow: hidden;
-}
-
-.wrapper .footer img{
-    z-index: -1;
-    object-fit: cover;
-    width: 100%;
-}
-
-.wrapper .footer .footer-content{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-areas: 
-        "logo-wrapper contact social-media"
-        "copyright copyright copyright"
-    ;
-    grid-template-columns: 2fr 2fr 1fr;
-    grid-template-rows: 1fr auto;
-}
-
-.wrapper .footer .footer-content .logo-wrapper{
-    grid-area: logo-wrapper;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    padding: 20px;
-    
-}
-
-.wrapper .footer .footer-content .logo-wrapper img{
-    object-fit: cover;
-    width: 80%;
-}
-
-.wrapper .footer .footer-content .contact{
-    grid-area: contact;
-    position: relative;
-    display: block;
-    padding: 10px 10px 10px 10px;
-}
-
-.wrapper .footer .footer-content .social-media{
-    grid-area: social-media;
-    position: relative;
-    display: block;
-    padding: 10px 10px 10px 10px;
-}
-
-.wrapper .footer .footer-content .copyright{
-    grid-area: copyright;
 }
 
 /* ============================================== BLOCK NAVIGATION SYSTEM ================================================= */
@@ -198,18 +44,19 @@ background: #555;
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: red;
+    background-color: white;
     z-index: 100;
     right: -100vw;
-    transition: .7s;
+    transition: .4s;
     overflow-y: auto;
 }
 
 .navigation-block .navigation-block-child{
-    display: block;
-    background-color: black;
-    height: 100px;
-    margin: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-start;
 }
 
 .navigation-block.active{
@@ -217,52 +64,6 @@ background: #555;
 }
 
 @media only screen and (max-width: 1000px) {
-    .wrapper{
-        grid-template-rows: 80px auto auto;
-    }
-
-    .wrapper .nav .logo-wrapper{
-        width: 150px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .wrapper .nav .logo-wrapper img{
-        margin: 0;
-        width: 80%;
-        object-fit: cover;
-    }
-
-    .wrapper .nav .nav-wrapper{
-        flex-grow: 5;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        text-align: center;
-        padding: 30px 30px 10px 10px;
-    }
-
-    .wrapper .nav .nav-wrapper ul#nav-media-wide{
-        display: none;
-    }
-
-    .wrapper .nav .nav-wrapper ul#nav-media-small{
-        display: block;
-    }
-
-    .wrapper .content{
-        grid-area: content;
-        display: grid;
-        grid-template-areas: 
-            "big-image"
-            "real-content"
-        ;
-        grid-template-columns: 1fr;
-        grid-template-rows: 200px auto;
-    }
-
     .wrapper .content .big-image{
         grid-area: big-image;
     }
@@ -285,46 +86,15 @@ background: #555;
         object-position: 50% 50%;
     }
 
-    .wrapper .footer .footer-content{
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-areas: 
-            "logo-wrapper"
-            "contact"
-            "social-media"
-            "copyright"
-        ;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-    }
-
-    .wrapper .footer .footer-content .logo-wrapper{
-        height: auto;
-    }
-
-    .wrapper .footer .footer-content .logo-wrapper img{
-        width: 100%;
-    }
-
-    .wrapper .footer .footer-content .contact{
-        text-align: center;
-    }
-    
-    .wrapper .footer .footer-content .social-media{
-        text-align: center;
-    }
-
     .swiper-slide{
         width: 90vw;
         max-height: 500px;
-        overflow:auto
+        overflow-y: auto;
     }
     
     .mySwiper{
         width: 90vw;
         max-height: 500px;
-        overflow:auto
     }
         
 }
