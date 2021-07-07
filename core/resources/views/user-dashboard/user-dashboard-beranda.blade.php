@@ -1,18 +1,7 @@
 @extends('layout.main-layout.main-layout')
 
-@push('js')
-<script>
-        $(document).ready(function(){
-
-            $('#navigation-button').click(function(){
-                $('#navigation-block').toggleClass('active');
-            })
-
-            $('#navigation-button-close').click(function(){
-                $('#navigation-block').toggleClass('active');
-            })
-        });
-    </script>
+@push('css')
+<link href="{{ asset('asset\css\layout-css\user-dashboard-layout.css') }}" rel="stylesheet">
 @endpush
 
 @section('navigation-wide')
@@ -65,3 +54,18 @@
                 </div>
             </a>
 @endsection
+
+@push('js')
+<script>
+        $(document).ready(function(){
+
+            $('#navigation-button').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+
+            $('#navigation-button-close').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+        });
+    </script>
+@endpush

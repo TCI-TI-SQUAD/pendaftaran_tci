@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name') }}</title>
 
-    <link href="{{ asset('asset\css\layout-css\layout-css.css') }}" rel="stylesheet">
     <link href="{{ asset('asset\vendor\mdbootstrap\css\bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset\vendor\mdbootstrap\css\mdb.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset\vendor\fontawesome\css\all.min.css') }}" rel="stylesheet">
