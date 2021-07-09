@@ -7,6 +7,7 @@
 /* width */
 ::-webkit-scrollbar {
     width: 0px;
+    height: 10px;
 }
 
 /* Track */
@@ -17,6 +18,7 @@ background: #f1f1f1;
 /* Handle */
 ::-webkit-scrollbar-thumb {
 background: #888;
+border-radius: 50px;
 }
 
 /* Handle on hover */
@@ -89,10 +91,32 @@ background: #555;
     grid-area: content;
     display: grid;
     grid-template-areas: 
-        "big-image real-content"
+        "profile-wrapper countdown"
+        "profile-wrapper pengumuman"
     ;
+    grid-template-rows: 1fr auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+}
+
+.wrapper .content .profile-wrapper{
+    grid-area: profile-wrapper;
+    display: block;
+}
+
+.wrapper .content .countdown{
+    grid-area: countdown;
+    width:50vw;
+}
+
+.wrapper .content .pengumuman{
+    grid-area: pengumuman;
+    overflow-y: auto;
+}
+
+.wrapper .content .pengumuman .card.card-pengumuman{
+    display: inline-block;
+    width: 20vw;
+    height: 100%;
 }
 
 /* =================================================== FOOTER =================================================== */
@@ -179,6 +203,15 @@ background: #555;
     right: 0;
 }
 
+.wrapper .footer .footer-content .logo-wrapper{
+    grid-area: logo-wrapper;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 20px;
+}
+
 @media only screen and (max-width: 1000px) {
     .wrapper{
         grid-template-rows: 80px auto auto;
@@ -217,6 +250,26 @@ background: #555;
 
     .wrapper .content{
         grid-area: content;
+    }
+
+    .wrapper .content{
+        grid-template-areas: 
+            "countdown"
+            "profile-wrapper"
+            "pengumuman"
+        ;    
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .wrapper .content .pengumuman .card.card-pengumuman{
+        width: 80vw;
+    }
+    
+
+    .wrapper .content .countdown{
+        grid-area: countdown;
+        width:100vw;
     }
 
     .wrapper .footer img{

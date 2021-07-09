@@ -56,6 +56,10 @@
                     </li>
 @endsection
 
+@push('css')
+<link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
             <div class="big-image"> 
                 <img src="{{ asset('asset\image\landing-page\lampion.webp') }}" alt="lampion.webp" class="z-depth-2">
@@ -136,6 +140,8 @@
 @endsection
 
 @push('js')
+<script type="text/javascript" src="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.js') }}"></script>
+
 <script>
         $(document).ready(function(){
             let flipdown = new FlipDown(1625774831,'flipdown');
