@@ -105,6 +105,7 @@
 @endsection
 
 @push('js')
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script type="text/javascript" src="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.js') }}"></script>
 
 <script>
