@@ -66,7 +66,6 @@
             </div>
 
             <div class="real-content">
-                        <h5 class="card-title text-center p-2 text-white" style="background-color:#eb4034;"><a>PENGUMUMAN</a></h5>
                 <div>
                     <h3><span style="color:#4B0C0D;font-weight:bold;">Belajar Bahasa Mandarin</span> Menjadi Mudah <span style="color:#4B0C0D;font-weight:bold;">Bersama Kami</span></h3>
                 </div>
