@@ -35,6 +35,10 @@ Route::prefix('user')->group(function(){
         return view('user-dashboard.user-dashboard-beranda');
     })->name('user.beranda');
 
+    Route::get('/pendaftaran', function () {
+        return view('user-dashboard.user-pendaftaran');
+    })->name('user.beranda');
+
 });
 // AKHIR
 
