@@ -99,3 +99,9 @@
     }
         
 }
+
+/* hover button register */
+.wrapper .nav .btn-register:hover{
+    background-color: #00c851 !important;
+    color: white !important;
+}

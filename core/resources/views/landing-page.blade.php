@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a href="{{ Route('user.register') }}">
-                            <button type="button" class="btn btn-outline-success waves-effect">Register Here</button>
+                            <button type="button" class="btn btn-outline-success btn-register waves-effect">Register Here</button>
                         </a>
                     </li>
 @endsection
