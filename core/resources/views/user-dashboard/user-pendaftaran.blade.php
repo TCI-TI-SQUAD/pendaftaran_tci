@@ -76,7 +76,7 @@
     <!-- END DROPDOWN -->
 
     <!-- KELAS -->
-    <div class="kelas p-3 m-3 animated slideInRight jumbotron border-primary" style="border-top:10px solid;">
+    <div class="kelas p-3 m-3 animated slideInUp jumbotron border-primary" style="border-top:10px solid;">
         <!-- Card -->
         <div class="card">
 
