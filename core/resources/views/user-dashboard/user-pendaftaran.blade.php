@@ -58,12 +58,13 @@
 @endsection
 
 @section('content')
+
     <!-- DROPDOWN -->
-    <div class="dropdown p-2 animated slideInUp">
+    <div class="dropdown p-2 animated slideInLeft">
         <!-- Split button -->
         <div class="btn-group">
         <button type="button" class="btn">Pendaftaran</button>
-        <button type="button" class="btn dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true"
+        <button type="button" class="btn dropdown-toggle px-3 bg-primary" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
@@ -76,79 +77,64 @@
     <!-- END DROPDOWN -->
 
     <!-- KELAS -->
-    <div class="kelas p-3 m-3 animated slideInUp jumbotron border-primary" style="border-top:10px solid;">
+    <div class="kelas p-3 m-3 animated slideInUp jumbotron border-secondary" style="border-top:10px solid;">
         <!-- Card -->
         <div class="card">
 
-        <!-- Card image -->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+            <!-- Card image -->
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
-        <!-- Card content -->
-        <div class="card-body">
+            <!-- Card content -->
+            <div class="card-body text-center">
 
-        <!-- Title -->
-        <h4 class="card-title"><a>Card title</a></h4>
-        <!-- Text -->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <!-- Button -->
-        <a href="#" class="btn btn-primary">Button</a>
+                <!-- Title -->
+                <h4 class="card-title"><a>Kelas HSK 1 (A)</a></h4>
+                <!-- Text -->
+                <div class="row mt-3">
 
-        </div>
+                    <div class="col">
+                        <img src="" alt="" class="img-thumbnail rounded-circle bg-primary" style="width:50px;height:50px;">
+                    </div>
 
-        </div>
+                </div>
+                <div class="row">
 
-        <!-- Card -->
-        <div class="card">
+                    <div class="col">
+                        <p>Miss Luo Yang</p>
+                    </div>
 
-        <!-- Card image -->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+                </div>
 
-        <!-- Card content -->
-        <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        Kuota 25 / 50
+                    </div>
+                </div>
 
-        <!-- Title -->
-        <h4 class="card-title"><a>Card title</a></h4>
-        <!-- Text -->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <!-- Button -->
-        <a href="#" class="btn btn-primary">Button</a>
+                <div class="row">
+                    <div class="col">
+                        <a href="#" class="btn btn-primary">Jadwal</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="btn btn-success">Ikuti</a>
+                    </div>
+                </div>
+                <!-- Button -->
 
-        </div>
-
-        </div>
-
-        <!-- Card -->
-        <div class="card">
-
-        <!-- Card image -->
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-
-        <!-- Card content -->
-        <div class="card-body">
-
-        <!-- Title -->
-        <h4 class="card-title"><a>Card title</a></h4>
-        <!-- Text -->
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-        <!-- Button -->
-        <a href="#" class="btn btn-primary">Button</a>
+            </div>
 
         </div>
 
-        </div>
     </div>
     <!-- END KELAS -->
     
     <!-- PENGUMUMAN -->
-    <div class="pengumuman jumbotron m-3 p-2 border-primary" style="border-top:10px solid;">
-        <div class="swiper-container mySwiper">
+    <div class="pengumuman animated slideInRight">
+        <div class="swiper-container mySwiper jumbotron  m-3 p-2 border-secondary" style="border-top:10px solid;">
 
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper mb-5" style="height:50vh;overflow-x:hidden;">
 
-                <div class="swiper-slide d-flex justify-content-center align-items-center">
+                <div class="swiper-slide">
                             
                             <!-- CARD -->
                             <div class="card-pengumuman">
@@ -255,25 +241,37 @@
                 </div>
 
                 <div class="swiper-slide d-flex justify-content-center align-items-center">
-                        
+                        a
                             
                 </div>
 
                 <div class="swiper-slide d-flex justify-content-center align-items-center">
                                
-                            
+                        b
                 </div>
             </div>
-
             
             <div class="swiper-pagination"></div>
         </div>
     </div>
     <!-- END PENGUMUMAN -->
+
 @endsection
 
 @push('js')
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+        $(document).ready(function(){
+
+            $('#navigation-button').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+
+            $('#navigation-button-close').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+        });
+    </script>
 <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
@@ -285,7 +283,7 @@
             pagination: {
             el: ".swiper-pagination",
             clickable: true,
-            },
+            }
         });
 </script>
 @endpush

@@ -34,10 +34,9 @@ background: #555;
         "footer"
     ;
     grid-template-columns: 1fr;
-    grid-template-rows: 80px auto max-content;
+    grid-template-rows: 80px auto auto;
     width: 100vw;
     min-height: 100vh;
-    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -94,8 +93,8 @@ background: #555;
         "dropdown pengumuman"
         "kelas pengumuman"
     ;
-    grid-template-rows: auto auto;
-    grid-template-columns: 2fr max-content;
+    grid-template-rows: auto max-content;
+    grid-template-columns: auto 500px;
 }
 
 .wrapper .content .dropdown{
@@ -117,15 +116,8 @@ background: #555;
 
 .wrapper .content .pengumuman{
     grid-area: pengumuman;
-    width: 30vw;
+    position: relative;
 }
-
-.card-pengumuman{
-    height: 500px;
-    width: 100%;
-    overflow-x: auto;
-}
-
 
 /* =================================================== FOOTER =================================================== */
 
@@ -221,6 +213,9 @@ background: #555;
 }
 
 @media only screen and (max-width: 1000px) {
+    .swiper-container{
+        width: 80vw !important;
+    }
     .wrapper{
         grid-template-rows: 80px auto auto;
     }
@@ -260,26 +255,6 @@ background: #555;
         grid-area: content;
     }
 
-    .wrapper .content{
-        grid-template-areas: 
-            "countdown"
-            "profile-wrapper"
-            "pengumuman"
-        ;    
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-    }
-
-    .wrapper .content .pengumuman .card.card-pengumuman{
-        width: 80vw;
-    }
-    
-
-    .wrapper .content .countdown{
-        grid-area: countdown;
-        width:100vw;
-    }
-
     .wrapper .footer img{
         object-fit: cover;
         width: 100%;
@@ -299,6 +274,25 @@ background: #555;
         ;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
+    }
+
+    .wrapper .content{
+        grid-area: content;
+        display: grid;
+        grid-template-areas: 
+            "dropdown"
+            "kelas"
+            "pengumuman"
+        ;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: 1fr;
+    }
+
+    .wrapper .content .pengumuman{
+        width: 99vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .wrapper .footer .footer-content .logo-wrapper{

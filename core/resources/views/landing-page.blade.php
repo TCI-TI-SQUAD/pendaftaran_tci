@@ -58,7 +58,7 @@
 @endsection
 
 @push('css')
-<link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -105,29 +105,29 @@
 @endsection
 
 @push('js')
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script type="text/javascript" src="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.js') }}"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.js') }}"></script>
 
-<script>
-    $(document).ready(function(){
+    <script>
+        $(document).ready(function(){
 
-        $('#navigation-button').click(function(){
-            $('#navigation-block').toggleClass('active');
-        })
+            $('#navigation-button').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
 
-        $('#navigation-button-close').click(function(){
-            $('#navigation-block').toggleClass('active');
-        })
-        let flipdown = new FlipDown(1626111730,'flipdown');
-            flipdown.start();
-        let flipdown2 = new FlipDown(1626111730,'flipdown2');
-            flipdown2.start();
-        let flipdown3 = new FlipDown(1626111730,'flipdown3');
-            flipdown3.start();
-    });
-</script>
+            $('#navigation-button-close').click(function(){
+                $('#navigation-block').toggleClass('active');
+            })
+            let flipdown = new FlipDown(1626111730,'flipdown');
+                flipdown.start();
+            let flipdown2 = new FlipDown(1626111730,'flipdown2');
+                flipdown2.start();
+            let flipdown3 = new FlipDown(1626111730,'flipdown3');
+                flipdown3.start();
+        });
+    </script>
 
-    
+        
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 30,
