@@ -21,7 +21,7 @@
                     </li>
                     <li>
                         <a href="">
-                            <button type="button" class="btn btn-outline-danger waves-effect">Log Out</button>
+                            <button type="button" class="btn btn-outline-danger btn-logout waves-effect">Log Out</button>
                         </a>
                     </li>
 @endsection
