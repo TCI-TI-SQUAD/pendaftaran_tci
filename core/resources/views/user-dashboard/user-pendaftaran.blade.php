@@ -100,7 +100,7 @@
                 <div class="row">
 
                     <div class="col">
-                        <p>Miss Luo Yang</p>
+                        <b>Miss Luo Yang</b>
                     </div>
 
                 </div>
@@ -109,6 +109,10 @@
                     <div class="col">
                         Kuota 25 / 50
                     </div>
+                </div>
+
+                <div class="progress m-3">
+                    <div class="progress-bar" role="progressbar" style="width:25%;"></div>
                 </div>
 
                 <div class="row">
