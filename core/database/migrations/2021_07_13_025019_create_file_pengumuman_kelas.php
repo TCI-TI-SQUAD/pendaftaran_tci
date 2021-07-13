@@ -18,6 +18,7 @@ class CreateFilePengumumanKelas extends Migration
             $table->foreignId('id_pengumuman_kelas');
             $table->string('nama_file',200);
             $table->timestamps();
+            $table->softDeletes('deleted_at',0);
         });
     }
 

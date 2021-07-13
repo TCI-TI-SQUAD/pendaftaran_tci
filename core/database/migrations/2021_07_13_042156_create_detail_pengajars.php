@@ -15,7 +15,11 @@ class CreateDetailPengajars extends Migration
     {
         Schema::create('detail_pengajars', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pengajar');
+            $table->foreignId('id_kelas');
+            $table->string('keterangan',100);
             $table->timestamps();
+            $table->softDeletes('deleted_at',0);
         });
     }
 

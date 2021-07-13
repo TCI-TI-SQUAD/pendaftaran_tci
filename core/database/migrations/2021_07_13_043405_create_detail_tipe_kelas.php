@@ -15,7 +15,10 @@ class CreateDetailTipeKelas extends Migration
     {
         Schema::create('detail_tipe_kelas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_kelas');
+            $table->foreignId('id_tipe_kelas');
             $table->timestamps();
+            $table->softDeletes('deleted_at',0);
         });
     }
 
