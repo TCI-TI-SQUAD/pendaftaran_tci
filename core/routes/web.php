@@ -37,7 +37,7 @@ Route::prefix('user')->group(function(){
 
     Route::get('/pendaftaran', function () {
         return view('user-dashboard.user-pendaftaran');
-    })->name('user.beranda');
+    })->name('user.pendaftaran');
 
 });
 // AKHIR

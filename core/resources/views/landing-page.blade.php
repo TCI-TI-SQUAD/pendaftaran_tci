@@ -2,6 +2,7 @@
 
 @push('css')
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+<link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
 <link href="{{ asset('asset\css\layout-css\layout-css.css') }}" rel="stylesheet">
 <link href="{{ asset('asset\css\lading-page\user-landing-page.css') }}" rel="stylesheet">
 @endpush
@@ -56,10 +57,6 @@
                         </a>
                     </li>
 @endsection
-
-@push('css')
-    <link href="{{ asset('asset\vendor\flipdown-master\dist\flipdown.min.css') }}" rel="stylesheet">
-@endpush
 
 @section('content')
             <div class="big-image"> 
