@@ -39,12 +39,6 @@
 
 @media only screen and (max-width: 1200px) {
     
-    .wrapper .footer img{
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        object-position: 50% 50%;
-    }
     .container-about{
         width: 100%;
         padding: 0;
