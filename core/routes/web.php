@@ -37,6 +37,16 @@ Route::get('/about',function(){
             Route::post('login','auth\authcotroller\AuthController@loginPost')->name('user.post.login');
 
             Route::post('register','auth\authcotroller\AuthController@registerPost')->name('user.post.register');
+
+            // AJAX
+                // AJAX GET FAKULTAS
+                    Route::post('/getfakultas','auth\authcotroller\AuthController@getFakultas')->name('user.ajax.getFakultas');
+                // END
+
+                // AJAX GET PRODI
+                    Route::post('/getprodi','auth\authcotroller\AuthController@getProdi')->name('user.ajax.getProdi');
+                // END
+            // END
         // AKHIR
 
         // USER DASHBOARD

@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Fakultas;
+
 class CreateFakultas extends Migration
 {
     /**
@@ -21,6 +23,14 @@ class CreateFakultas extends Migration
             $table->timestamps();
             $table->softDeletes('deleted_at',0);
         });
+
+        Fakultas::insert([
+            [
+                'id_instansi' => 2,
+                'nama_fakultas' => 'Fakultas Teknik',
+                'keterangan' => 'Fakultas Tenkin Universitas Udayana'
+            ]
+        ]);
     }
 
     /**

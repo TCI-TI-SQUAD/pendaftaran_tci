@@ -74,7 +74,7 @@ background: #555;
     position: relative;
     display: block;
     height: 100%;
-    width: 50%;
+    width: 60%;
     overflow-y: auto;
     overflow-x: hidden;
 }

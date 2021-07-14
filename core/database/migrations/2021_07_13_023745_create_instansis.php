@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Instansi;
+
 class CreateInstansis extends Migration
 {
     /**
@@ -22,6 +24,21 @@ class CreateInstansis extends Migration
             $table->timestamps();
             $table->softDeletes('deleted_at',0);
         });
+
+        Instansi::insert([
+            [
+            'nama_instansi' => 'Umum',
+            'keterangan' => 'Umum tidak berasal dari instansi kerja sama TCI',
+            'logo_instansi' => 'default.jpg',
+            'tipe_instansi' => 'instansi_non_universitas',
+            ],
+            [
+            'nama_instansi' => 'Universitas Udayana',
+            'keterangan' => 'Universitas Udayana Bali',
+            'logo_instansi' => 'default.jpg',
+            'tipe_instansi' => 'universitas',
+            ]
+        ]);
     }
 
     /**

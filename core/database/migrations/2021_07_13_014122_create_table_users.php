@@ -24,6 +24,7 @@ class CreateTableUsers extends Migration
             $table->string('phone_number',15)->unique();
             $table->string('line',50)->unique();
             $table->string('wa',15)->unique();
+            $table->string('user_profile_pict',200);
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('status',['aktif','ban'])->default('aktif');
             $table->enum('favorite',['tidak','iya'])->default('tidak');

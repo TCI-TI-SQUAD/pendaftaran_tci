@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Prodi;
+
 class CreateProdi extends Migration
 {
     /**
@@ -13,7 +15,7 @@ class CreateProdi extends Migration
      */
     public function up()
     {
-        Schema::create('prodi', function (Blueprint $table) {
+        Schema::create('prodis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_fakultas');
             $table->string('nama_prodi',50);
@@ -21,6 +23,14 @@ class CreateProdi extends Migration
             $table->timestamps();
             $table->softDeletes('deleted_at',0);
         });
+
+        Prodi::insert([
+            [
+                'id_fakultas' => 1,
+                'nama_prodi' => 'Teknologi Informasi',
+                'keterangan' => 'Program Studi Teknologi Informasi Fakultas Teknik Universitas Udayana'
+            ]
+        ]);
     }
 
     /**
@@ -30,6 +40,6 @@ class CreateProdi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prodi');
+        Schema::dropIfExists('prodis');
     }
 }
