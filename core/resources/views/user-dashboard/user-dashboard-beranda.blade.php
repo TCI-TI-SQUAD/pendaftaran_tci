@@ -8,11 +8,11 @@
 @endpush
 
 @section('navigation-wide')
-    @include('user-dashboard.user-nav.top-nav-wide')
+    @include('user-dashboard.user-nav.top-nav-wide',['home' => 'active'])
 @endsection
 
 @section('navigation-small')
-    @include('user-dashboard.user-nav.top-nav-small')
+    @include('user-dashboard.user-nav.top-nav-small',['home' => 'active'])
 @endsection
 
 @section('content')
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col">
                     <!-- Default input -->
-                    <label for="exampleForm2">No Pelajar</label>
+                    <label for="exampleForm2">No Pelajar TCI</label>
                     <input type="text" id="exampleForm2" class="form-control" value="1805551029" readonly>
                 </div>
             </div>

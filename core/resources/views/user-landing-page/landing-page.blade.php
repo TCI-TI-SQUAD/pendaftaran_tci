@@ -8,65 +8,19 @@
 @endpush
 
 @section('navigation-small')
-            <a href="{{ Route('user.landing-page') }}" style="text-decoration:none;" class="text-dark"> 
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-home"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Home</div>
-            </div>
-            </a>
-
-            
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-question"></i></div>
-                    <div style="flex-grow:2;margin:10px;">About</div>
-            </div>
-
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-address-book"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Contact</div>
-            </div>
-
-            <a href="{{ Route('user.login') }}" style="text-decoration:none;" class="text-dark">
-                <div class="navigation-block-child mt-3">
-                        <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-sign-in-alt"></i></div>
-                        <div style="flex-grow:2;margin:10px;">Log In</div>
-                </div>
-            </a>
-
-            <a href="{{ Route('user.register') }}" style="text-decoration:none;" class="text-dark">
-                <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-registered"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Register</div>
-                </div>
-            </a>
+    @include('user-landing-page.user-landing-page-nav.user-landing-page-nav-small',['home' => 'active'])
 @endsection
 
 @section('navigation-wide')
-                    <li>        
-                        <a class="text-dark font-weight-bold" href="">Home</a>
-                    </li>
-                    <li>
-                        <a class="text-dark" href="">About</a>
-                    </li>
-                    <li  class="border-right pr-2">
-                        <a class="text-dark" href="">Contact</a>
-                    </li>
-                    <li>
-                        <a class="text-dark" href="{{ Route('user.login') }}">Log In</a>
-                    </li>
-                    <li>
-                        <a href="{{ Route('user.register') }}">
-                            <button type="button" class="btn btn-outline-success btn-register waves-effect">Register Here</button>
-                        </a>
-                    </li>
+    @include('user-landing-page.user-landing-page-nav.user-landing-page-nav-wide',['home' => 'active'])
 @endsection
 
 @section('content')
-            <div class="big-image"> 
+            <div class="big-image animated slideInLeft"> 
                 <img src="{{ asset('asset\image\landing-page\lampion.webp') }}" alt="lampion.webp" class="z-depth-2">
             </div>
 
-            <div class="real-content">
+            <div class="real-content animated slideInRight">
                 <div>
                     <h3><span style="color:#4B0C0D;font-weight:bold;">Belajar Bahasa Mandarin</span> Menjadi Mudah <span style="color:#4B0C0D;font-weight:bold;">Bersama Kami</span></h3>
                 </div>

@@ -15,38 +15,40 @@ use Illuminate\Support\Facades\Route;
 
 // LANDING PAGE
 Route::get('/',function(){
-    return view('landing-page');
+    return view('user-landing-page.landing-page');
 })->name('user.landing-page');
 // AKHIR
 
 // ABOUT PAGE
 Route::get('/about',function(){
-    return view('about-page');
+    return view('user-landing-page.about-page');
 })->name('user.about-page');
 // AKHIR
 
 
 
-// AUTH
-Route::prefix('user')->group(function(){
+// USER
+    Route::prefix('user')->group(function(){
+        // USER AUTH
+            Route::get('login','auth\authcotroller\AuthController@index')->name('user.login');
 
-    Route::get('/login', function () {
-        return view('auth.user-login');
-    })->name('user.login');
+            Route::get('register', 'auth\authcotroller\AuthController@register')->name('user.register');
 
-    Route::get('/register', function () {
-        return view('auth.user-register');
-    })->name('user.register');
+            Route::post('login','auth\authcotroller\AuthController@loginPost')->name('user.post.login');
 
-    Route::get('/beranda', function () {
-        return view('user-dashboard.user-dashboard-beranda');
-    })->name('user.beranda');
+            Route::post('register','auth\authcotroller\AuthController@registerPost')->name('user.post.register');
+        // AKHIR
 
-    Route::get('/pendaftaran', function () {
-        return view('user-dashboard.user-pendaftaran');
-    })->name('user.pendaftaran');
+        // USER DASHBOARD
+            Route::get('/beranda', function () {
+                return view('user-dashboard.user-dashboard-beranda');
+            })->name('user.beranda');
 
-});
+            Route::get('/pendaftaran', function () {
+                return view('user-dashboard.user-pendaftaran');
+            })->name('user.pendaftaran');
+        // AKHIR
+    });
 // AKHIR
 
 

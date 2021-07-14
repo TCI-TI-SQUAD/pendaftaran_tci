@@ -6,54 +6,11 @@
 @endpush
 
 @section('navigation-small')
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-home"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Home</div>
-            </div>
-        
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-question"></i></div>
-                    <div style="flex-grow:2;margin:10px;">About</div>
-            </div>
-
-            <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-address-book"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Contact</div>
-            </div>
-
-            <a href="{{ Route('user.login') }}" style="text-decoration:none;" class="text-dark">
-                <div class="navigation-block-child mt-3">
-                        <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-sign-in-alt"></i></div>
-                        <div style="flex-grow:2;margin:10px;">Log In</div>
-                </div>
-            </a>
-
-            <a href="{{ Route('user.register') }}" style="text-decoration:none;" class="text-dark">
-                <div class="navigation-block-child mt-3">
-                    <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-registered"></i></div>
-                    <div style="flex-grow:2;margin:10px;">Register</div>
-                </div>
-            </a>
+    @include('user-landing-page.user-landing-page-nav.user-landing-page-nav-small',['about' => 'active'])
 @endsection
 
 @section('navigation-wide')
-                    <li>        
-                        <a class="text-dark font-weight-bold" href="">Home</a>
-                    </li>
-                    <li>
-                        <a class="text-dark" href="">About</a>
-                    </li>
-                    <li  class="border-right pr-2">
-                        <a class="text-dark" href="">Contact</a>
-                    </li>
-                    <li>
-                        <a class="text-dark" href="{{ Route('user.login') }}">Log In</a>
-                    </li>
-                    <li>
-                        <a href="{{ Route('user.register') }}">
-                            <button type="button" class="btn btn-outline-success btn-register waves-effect">Register Here</button>
-                        </a>
-                    </li>
+    @include('user-landing-page.user-landing-page-nav.user-landing-page-nav-wide',['about' => 'active'])
 @endsection
 
 @push('css')

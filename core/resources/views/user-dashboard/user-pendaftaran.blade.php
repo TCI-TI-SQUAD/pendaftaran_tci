@@ -7,7 +7,7 @@
 @endpush
 
 @section('navigation-wide')
-    @include('user-dashboard.user-nav.top-nav-wide')
+    @include('user-dashboard.user-nav.top-nav-wide',['pendaftaran' => 'active'])
 @endsection
 
 @section('navigation-small')
