@@ -85,6 +85,13 @@ background: #555;
     display: inline;
     margin: 0px 10px 0px 10px;
 }
+
+
+/* hover button logout */
+.wrapper .nav .btn-logout:hover{
+    background-color: #ff3547 !important;
+    color: white !important;
+}
 /* =================================================== CONTENT =================================================== */
 
 .wrapper .content{

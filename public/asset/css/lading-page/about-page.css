@@ -1,0 +1,77 @@
+.content{
+    display: block !important;
+}
+.container-about{
+    width: 94%;
+}
+
+.about-img img{
+    width: 100%;
+    margin: 0 !important;
+}
+.about-text{
+    text-align: justify;
+}
+/* ============================================== BLOCK NAVIGATION SYSTEM ================================================= */
+
+.navigation-block{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    z-index: 100;
+    right: -100vw;
+    transition: .4s;
+    overflow-y: auto;
+}
+
+.navigation-block .navigation-block-child{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-start;
+}
+
+.navigation-block.active{
+    right: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    
+    .container-about{
+        width: 100%;
+        padding: 0;
+        justify-content: center;
+
+    }
+    .about-row{
+        margin-top: 0 !important;
+    }
+    .about-img{
+        max-height: 400px;
+        overflow: hidden;
+        padding: 0 !important;
+    }
+    .about-img img{
+        object-fit: cover;
+        max-height: 400px !important;
+        object-position: 50% 30% !important;
+    }
+    .about-text h3{
+        text-align: center;
+    }
+    .about-text h3{
+        display: none;
+    }
+    .about-text p{
+        margin: 5% 3%;
+    }
+
+}
+
+/* hover button register */
+.wrapper .nav .btn-register:hover{
+    background-color: #00c851 !important;
+    color: white !important;
+}

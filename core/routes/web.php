@@ -19,6 +19,13 @@ Route::get('/',function(){
 })->name('user.landing-page');
 // AKHIR
 
+// ABOUT PAGE
+Route::get('/about',function(){
+    return view('about-page');
+})->name('user.about-page');
+// AKHIR
+
+
 
 // AUTH
 Route::prefix('user')->group(function(){
