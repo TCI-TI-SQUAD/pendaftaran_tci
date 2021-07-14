@@ -8,11 +8,14 @@
 @endpush
 
 @section('navigation-small')
+            <a href="{{ Route('user.landing-page') }}" style="text-decoration:none;" class="text-dark"> 
             <div class="navigation-block-child mt-3">
                     <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-home"></i></div>
                     <div style="flex-grow:2;margin:10px;">Home</div>
             </div>
-        
+            </a>
+
+            
             <div class="navigation-block-child mt-3">
                     <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-question"></i></div>
                     <div style="flex-grow:2;margin:10px;">About</div>
