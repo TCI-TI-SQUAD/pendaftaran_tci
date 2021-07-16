@@ -17,7 +17,7 @@ class CreateFakultas extends Migration
     {
         Schema::create('fakultas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_instansi');
+            $table->foreignId('id_universitas');
             $table->string('nama_fakultas',50);
             $table->string('keterangan',100);
             $table->timestamps();
@@ -26,10 +26,15 @@ class CreateFakultas extends Migration
 
         Fakultas::insert([
             [
-                'id_instansi' => 2,
+                'id_universitas' => 1,
                 'nama_fakultas' => 'Fakultas Teknik',
                 'keterangan' => 'Fakultas Tenkin Universitas Udayana'
-            ]
+            ],
+            [
+                'id_universitas' => 2,
+                'nama_fakultas' => 'Fakultas Teknik Undiksa',
+                'keterangan' => 'Fakultas Tenkin Universitas Pendidikan Ganesha'
+            ],
         ]);
     }
 

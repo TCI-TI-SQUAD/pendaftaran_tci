@@ -11,4 +11,9 @@ class Prodi extends Model
         'nama_prodi',
         'keterangan',
     ];
+
+    protected $casts = [
+        'id' => EncryptCast::class,
+        'id_fakultas' => EncryptCast::class,
+    ];
 }

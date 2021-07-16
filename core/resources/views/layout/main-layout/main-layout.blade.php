@@ -98,18 +98,17 @@
                     <div>
                         <h5 class="mb-3 text-center">Social Media</h5>
                     </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-facebook-f"></i> Facebook </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-instagram"></i> Instagram </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-twitter"></i> Twitter </small>
-                    </div>
-                    <div class="mt-2">
-                        <small><i class="fab fa-youtube"></i> Youtube Channel </small>
-                    </div>
+                    @if(isset($social_medias))
+                        @foreach($social_medias as $social_media)
+                            <div class="mt-2" data-toggle="tooltip" title="{{ $social_media->keterangan }}" href="{{ $social_media->link }}">
+                                <a target="_blank" href="{{ $social_media->link }}" class="text-white">
+                                    <img src="{{ url('asset\image\social-media',[$social_media->social_media_image]) }}" alt="" style="margin:auto;display:inline-block;width:20px;height:20px">
+                                    <small style="display:inline-block">{{ $social_media->nama_social_media }}</small>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
+                    
                 </div>
 
                 <div class="copyright text-white text-center mt-3" style="background-color:#5e0411;">
@@ -128,6 +127,13 @@
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\mdb.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\fontawesome\js\all.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        });
+    </script>
     @stack('js')
 </body>
 </html>

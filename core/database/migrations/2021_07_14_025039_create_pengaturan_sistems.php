@@ -20,7 +20,7 @@ class CreatePengaturanSistems extends Migration
             $table->string('nama_pengaturan',50);
             $table->string('keterangan',200);
             $table->string('pengaturan',200)->nullable();
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(1)->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at',0);
         });
@@ -29,7 +29,11 @@ class CreatePengaturanSistems extends Migration
             [
                 'nama_pengaturan' => 'open_registration',
                 'keterangan' => 'Menentukan apakah sistem menerima anggota baru atau tidak'
-            ]
+            ],
+            [
+                'nama_pengaturan' => 'open_registration',
+                'keterangan' => 'Menentukan apakah sistem menerima anggota baru atau tidak'
+            ],
         ]);
     }
 

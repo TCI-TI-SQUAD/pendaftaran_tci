@@ -11,13 +11,6 @@ class Instansi extends Model
     
     protected $fillable = [
         'nama_instansi',
-        'keterangan',
-        'logo_instansi',
-        'tipe_instansi'
+        'keterangan'
     ];
-
-    // HAS MANY FAKULTAS
-    public function Fakultas(){
-        return $this->hasMany('App\Fakultas','id_instansi','id');
-    }
 }

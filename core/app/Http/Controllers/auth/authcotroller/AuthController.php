@@ -5,12 +5,15 @@ namespace App\Http\Controllers\auth\authcotroller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Crypt;
 
 use App\PengaturanSistem;
 use App\PengaturanSocialMedia;
 use App\User;
-use App\Instansi;
+use App\Universitas;
 use App\Fakultas;
+use App\Instansi;
+use App\TipeSekolah;
 
 class AuthController extends Controller
 {
@@ -23,13 +26,16 @@ class AuthController extends Controller
 
     public function register(){
 
-        // AMBIL SEMUA DATA PENGATURAN SOSIAL MEDIA
-        $social_medias = PengaturanSocialMedia::all();
+        // AMBIL SEMUA UNIVERSITAS
+        $universitas = Universitas::all();
+
+        // AMBIL SEMUA JENJANG SEKOLAH
+        $tipe_sekolahs = TipeSekolah::all();
 
         // AMBIL SEMUA INSTANSI
         $instansis = Instansi::all();
 
-        return view('user-auth.user-register',compact(['instansis','social_medias']));
+        return view('user-auth.user-register',compact(['universitas','tipe_sekolahs','instansis']));
     }
 
     public function loginPost(Request $request){
@@ -37,6 +43,7 @@ class AuthController extends Controller
     }
 
     public function registerPost(Request $request){
+        dd($request->all());
         // SECURITY
             $request->validate([
                 'name' => 'required|unique:users,name|min:5|max:50',
@@ -46,7 +53,10 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'phone_number' => 'required|numeric|digits_between:7,15',
                 'line' => 'required|min:3|max:50',
-                'wa' => 'required|numeric|digits_between:7,15'
+                'wa' => 'required|numeric|digits_between:7,15',
+                'id_instansi' => 'required|numeric|exist:universitas,id',
+                'id_fakultas' => 'nullable|required|numeric|exist:fakultas,id',
+                'id_prodi' => 'nullable|required|numeric|exist:fakultas,id',
             ]);
         // END
 
@@ -87,44 +97,29 @@ class AuthController extends Controller
 
     }
 
-    // AJAX GET INSTANSI TYPE
+    // AJAX GET universitas TYPE
     public function getFakultas(Request $request){
         // SECURITY
             $request->validate([
-                'id' => 'required|numeric'
+                'id' => 'required|exists:universitas,id|string'
             ]);
         // END
         
         // MAIN LOGIC
             try {
-                $instansis = Instansi::with('Fakultas')->findOrFail($request->id);
-                
-                if($instansis->tipe_instansi == 'universitas'){
+                $universitas = Universitas::with('Fakultas')->findOrFail($request->id);
                     return response()->json([
                         'status' => 200,
                         'message' => 'berhasil mengambil fakultas',
-                        'instansi' => $instansis,
-                        'fakultas' => $instansis->Fakultas,
+                        'universitas' => $universitas,
                     ]);
-                }else{
-                    return response()->json([
-                        'status' => 200,
-                        'message' => 'barhasil, instansi bukan universitas',
-                        'instansi' => $instansis,
-                        'fakultas' => $instansis->Fakultas,
-                    ]);
-                }
-                
-
             }catch(ModelNotFoundException $err){
-                $instansis = (object) ['tipe_instansi' => 'instansi_non_universitas'];
 
-                return response()->json([
-                    'status' => 400,
-                    'message' => 'Gagal Data Tidak Ditemukan',
-                    'instansi' => $instansis,
-                    'fakultas' => null,
-                ],400);
+                    return response()->json([
+                        'status' => 400,
+                        'message' => 'Gagal Data Tidak Ditemukan',
+                        'universitas' => (object) [],
+                    ],400);
             }
         // END
             
@@ -134,7 +129,7 @@ class AuthController extends Controller
     public function getProdi(Request $request){
         // SECURITY
             $request->validate([
-                'id' => 'required|numeric'
+                'id' => 'required|exists:fakultas,id|numeric'
             ]);
         // END
         
@@ -153,11 +148,38 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => 400,
                     'message' => 'Gagal Data Tidak Ditemukan',
-                    'prodi' => null,
+                    'prodi' => (object) [],
                 ],400);
-
             }
         // END
+            
+    }
+
+    // AJAX GET SEKOLAH
+    public function getSekolah(Request $request){
+        // SECURITY
+            $request->validate([
+                'id' => 'required|exists:tipe_sekolahs,id|numeric',
+            ]);
+        // END
+
+        // MAIN LOGIC
+            try{
+                $tipe_sekolah = TipeSekolah::with('Sekolah')->findOrFail($request->id);
+
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'berhasil mengambil sekolah',
+                    'sekolahs' => $tipe_sekolah->Sekolah,
+                ]);
+
+            }catch(ModelNotFoundException $err){
+                return response()->json([
+                    'status' => 400,
+                    'message' => 'Gagal mengambil sekolah, tidak ada data yang sesuai',
+                    'sekolahs' => (object) [],
+                ]);
+            }
             
     }
 }

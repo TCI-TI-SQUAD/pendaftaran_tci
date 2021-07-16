@@ -25,7 +25,7 @@
                     <h3><span style="color:#4B0C0D;font-weight:bold;">Belajar Bahasa Mandarin</span> Menjadi Mudah <span style="color:#4B0C0D;font-weight:bold;">Bersama Kami</span></h3>
                 </div>
 
-                <div class="swiper-container mySwiper pb-4 m-2">
+                <div class="swiper-container mySwiper pb-4">
 
                     <div class="swiper-wrapper">
 

@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 // LANDING PAGE
-Route::get('/',function(){
-    return view('user-landing-page.landing-page');
-})->name('user.landing-page');
+    Route::get('/',function(){
+        return view('user-landing-page.landing-page');
+    })->name('user.landing-page');
 // AKHIR
 
 // ABOUT PAGE
-Route::get('/about',function(){
-    return view('user-landing-page.about-page');
-})->name('user.about-page');
+    Route::get('/about',function(){
+        return view('user-landing-page.about-page');
+    })->name('user.about-page');
 // AKHIR
 
 
@@ -45,6 +45,10 @@ Route::get('/about',function(){
 
                 // AJAX GET PRODI
                     Route::post('/getprodi','auth\authcotroller\AuthController@getProdi')->name('user.ajax.getProdi');
+                // END
+
+                // AJAX GET SEKOLAH
+                    Route::post('/getsekolah','auth\authcotroller\AuthController@getSekolah')->name('user.ajax.getSekolah');
                 // END
             // END
         // AKHIR
