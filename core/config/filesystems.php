@@ -79,7 +79,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        'C:\xampp\htdocs\Pendaftaran_tci\public\storage' => storage_path('app/public'),
     ],
 
 ];

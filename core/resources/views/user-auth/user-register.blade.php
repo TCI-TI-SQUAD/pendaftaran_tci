@@ -88,19 +88,19 @@
                     @if($errors->has('status'))
                         <select name="status" onchange="hideInputSystem(this.value)" type="text" placeholder="Pilih status" class="browser-default custom-select border border-danger" required>
                             <option value="">Pilih Status</option>
-                            <option value="umum">Umum</option>
-                            <option value="siswa">Siswa</option>
-                            <option value="mahasiswa">Mahasiswa</option>
-                            <option value="instansi">Instansi Kerjasama</option>
+                            <option value="umum" @if(old("status") == "umum") selected @endif>Umum</option>
+                            <option value="siswa" @if(old("status") == "siswa") selected @endif>Siswa</option>
+                            <option value="mahasiswa" @if(old("status") == "mahasiswa") selected @endif>Mahasiswa</option>
+                            <option value="instansi" @if(old("status") == "instansi") selected @endif>Instansi Kerjasama</option>
                         </select>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('status') }}</small></p>
                     @else
                         <select name="status" onclick="hideInputSystem(this.value)" onchange="hideInputSystem(this.value)" id="status" type="text" placeholder="Pilih status" class="browser-default custom-select" required>
                             <option value="">Pilih Status</option>
-                            <option value="umum">Umum</option>
-                            <option value="siswa">Siswa</option>
-                            <option value="mahasiswa">Mahasiswa</option>
-                            <option value="instansi">Instansi Kerjasama</option>
+                            <option value="umum" @if(old("status") == "umum") selected @endif>Umum</option>
+                            <option value="siswa" @if(old("status") == "siswa") selected @endif>Siswa</option>
+                            <option value="mahasiswa" @if(old("status") == "mahasiswa") selected @endif>Mahasiswa</option>
+                            <option value="instansi" @if(old("status") == "instansi") selected @endif>Instansi Kerjasama</option>
                         </select>
                     @endif
 
@@ -108,7 +108,7 @@
                             <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Instansi asal pendaftar apabila tidak berasal dari instansi yang ada silahkan pilih opsi UMUM">Instansi <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                             
                             @if($errors->has('instansi'))
-                                <select name="instansi" onchange="" type="text" placeholder="Pilih instansi" class="browser-default custom-select border border-danger" required>
+                                <select name="instansi" id="#instansi_input" onchange="" type="text" placeholder="Pilih instansi" class="browser-default custom-select border border-danger" required>
                                         <option value="">Pilih Instansi</option>
                                     @foreach($instansis as $instansi)
                                         <option value="{{$instansi->id}}">{{ $instansi->nama_instansi }}</option>
@@ -116,7 +116,7 @@
                                 </select>
                                 <p class="text-danger animated slideInUp"><small>{{ $errors->first('instansi') }}</small></p>
                             @else
-                                <select name="instansi" onchange="" type="text" placeholder="Pilih sekolah" class="browser-default custom-select" required>
+                                <select name="instansi" id="#instansi_input" onchange="" type="text" placeholder="Pilih sekolah" class="browser-default custom-select" required>
                                     <option value="">Pilih Instansi</option>
                                     @foreach($instansis as $instansi)
                                         <option value="{{$instansi->id}}">{{ $instansi->nama_instansi }}</option>
@@ -269,6 +269,19 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        @if(old('status') !== null)
+            @if(old('status') == 'siswa')
+                $('#sekolah_wrapper').css('display','block');
+                resetSiswa();
+            @elseif(old('status') == 'mahasiswa')
+                $('#universitas_wrapper').css('display','block');
+                resetMahasiswa();
+            @elseif(old('status') == 'instansi')
+                $('#instansi_wrapper').css('display','block');
+                resetInstansi();
+            @endif
+        @endif
     });
 
     function hideInputSystem(status){
@@ -502,18 +515,24 @@
         }
 
         function resetSiswa(){
-            $('tipe_sekolah_input').val("").change();
+            $('#tipe_sekolah_input').val("").change();
         }
     // AKHIR
 
+    // INSTANSI
+        function resetInstansi(){
+            $('#instansi_input').val("").change();
+        }
+    // END
+
     // SWEETALERT2
-    
-    @if(Session::has('status'))
-        Swal.fire({
-            icon:  @if(Session::has('icon')){!! '"'.Session::get('icon').'"' !!} @else 'question' @endif,
-            title: @if(Session::has('title')){!! '"'.Session::get('title').'"' !!} @else 'Oppss...'@endif,
-            text: @if(Session::has('message')){!! '"'.Session::get('message').'"' !!} @else 'Oppss...'@endif,
-        });
-    @endif
+        @if(Session::has('status'))
+            Swal.fire({
+                icon:  @if(Session::has('icon')){!! '"'.Session::get('icon').'"' !!} @else 'question' @endif,
+                title: @if(Session::has('title')){!! '"'.Session::get('title').'"' !!} @else 'Oppss...'@endif,
+                text: @if(Session::has('message')){!! '"'.Session::get('message').'"' !!} @else 'Oppss...'@endif,
+            });
+        @endif
+    // END
 </script>
 @endpush
