@@ -9,6 +9,7 @@
     <link href="{{ asset('asset\vendor\mdbootstrap\css\bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset\vendor\mdbootstrap\css\main.css') }}" rel="stylesheet">
     <link href="{{ asset('asset\vendor\fontawesome\css\all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css\app.css') }}" rel="stylesheet">
     @stack('css')
 
 </head>
@@ -127,6 +128,7 @@
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\mdbootstrap\js\mdb.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('asset\vendor\fontawesome\js\all.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js\app.js') }}"></script>
     <script>
         $(document).ready(function(){
             $(function () {

@@ -29,11 +29,7 @@ class CreatePengaturanSistems extends Migration
             [
                 'nama_pengaturan' => 'open_registration',
                 'keterangan' => 'Menentukan apakah sistem menerima anggota baru atau tidak'
-            ],
-            [
-                'nama_pengaturan' => 'open_registration',
-                'keterangan' => 'Menentukan apakah sistem menerima anggota baru atau tidak'
-            ],
+            ]
         ]);
     }
 

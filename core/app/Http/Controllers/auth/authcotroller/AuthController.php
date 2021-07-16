@@ -5,7 +5,10 @@ namespace App\Http\Controllers\auth\authcotroller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use DB;
 
 use App\PengaturanSistem;
 use App\PengaturanSocialMedia;
@@ -43,21 +46,48 @@ class AuthController extends Controller
     }
 
     public function registerPost(Request $request){
-        dd($request->all());
+        
         // SECURITY
             $request->validate([
                 'name' => 'required|unique:users,name|min:5|max:50',
                 'username' => 'required|unique:users,username|min:5|max:20',
-                'password' => 'required|same:password_confirmation|min:8|max:50',
-                'password_confirmation' => 'required|min:8|max:50',
-                'email' => 'required|email',
-                'phone_number' => 'required|numeric|digits_between:7,15',
-                'line' => 'required|min:3|max:50',
-                'wa' => 'required|numeric|digits_between:7,15',
-                'id_instansi' => 'required|numeric|exist:universitas,id',
-                'id_fakultas' => 'nullable|required|numeric|exist:fakultas,id',
-                'id_prodi' => 'nullable|required|numeric|exist:fakultas,id',
+                'email' => 'required|email|unique:users,email|min:5|max:50',
+                'phone_number' => 'required|numeric|unique:users,phone_number|digits_between:7,15',
+                'line' => 'required|min:3|unique:users,line|max:50',
+                'wa' => 'required|numeric|unique:users,wa|digits_between:7,15',
+                'alamat' => 'required|string|min:5|max:50',
+                'password' => 'required|same:password_confirmation|min:8|max:100',
+                'password_confirmation' => 'required|min:8|max:100',
+                'status' => 'required|in:umum,siswa,mahasiswa,instansi',
+                'kartu_identitas' => 'required',
+                'jenis_kartu_identitas' => 'required|in:ktp,nisn,ktm,passport'
             ]);
+
+            // VALIDATOR LANJUTAN
+            if($request->status == 'siswa'){
+                $request->validate([
+                    'tipe_sekolah' => 'required|numeric|exists:tipe_sekolahs,id',
+                    'sekolah' => 'required|numeric|exists:sekolahs,id'
+                ]);
+                
+                $id_instansi = $request->sekolah;
+            }else if ($request->status == 'mahasiswa'){
+                $request->validate([
+                    'universitas' => 'required|numeric|exists:universitas,id',
+                    'fakultas' => 'required|numeric|exists:fakultas,id',
+                    'prodi' => 'required|numeric|exists:prodis,id'
+                ]);
+
+                $id_instansi = $request->prodi;
+            }else if($request->status == 'instansi'){
+                $request->validate([
+                    'instansi' => 'required|numeric|exists:instansis,id'
+                ]);
+
+                $id_instansi = $request->instansi;
+            }else if($request->status == 'umum'){
+                $id_instansi = 0;
+            }
         // END
 
         // CHECK PENGATURAN SISTEMS
@@ -68,14 +98,30 @@ class AuthController extends Controller
             }
 
             if(!$pengaturan_registrations){
-                return redirect()->back();
+                return redirect()
+                    ->back()
+                    ->with([
+                        'status' => 'fail',
+                        'icon' => 'error',
+                        'title' => 'Pendaftaran Ditutup',
+                        'message' => 'Pendaftaran ke dalam sistem sedang di tutup oleh admin, mohon tunggu informasi lebih lanjut',
+                ]);
             }
+        // END
+
+        // GENERATE NOMOR PELAJAR TCI
+            $id_users_baru = DB::select("SHOW TABLE STATUS LIKE 'users'")[0]->Auto_increment;
+            $generate_nomor_pelajar_tci = date("Ymd").sprintf("%05d",$id_users_baru);
         // END
 
         // MAIN LOGIC
             // CREATE USER BARU
+            try{
                 User::create([
+                    'id_instansi' => $id_instansi,
+                    'status' => $request->status,
                     'name' => $request->name,
+                    'nomor_pelajar_tci' => $generate_nomor_pelajar_tci,
                     'username' => $request->username,
                     'password' => Hash::make($request->password),
                     'email' => $request->email,
@@ -83,15 +129,27 @@ class AuthController extends Controller
                     'line' => $request->line,
                     'wa' => $request->wa,
                 ]);
+            }catch(QueryException $err){
+                return redirect()
+                    ->back()
+                    ->with([
+                        'status' => 'fail',
+                        'icon' => 'error',
+                        'title' => 'Gagal Membuat Akun',
+                        'message' => 'Terjadi kesalahan saat membuat akun, apabila diperlukan mohon hubungi admin sistem',
+                ]);
+            }
             // END
 
             // REDIRECT KE HALAMAN LOGIN
                 return redirect()
-                            ->route('user.landing-page')
-                            ->with([
-                                'message' => 'Berhasil register ke dalam sistem, silahkan login dengan akun yang telah berhasil di buat',
-                                'color' => 'bg-success'
-                            ]);
+                    ->route('user.landing-page')
+                    ->with([
+                        'status' => 'success',
+                        'icon' => 'success',
+                        'title' => 'Berhasil melakukan pendaftaran',
+                        'message' => 'Selamat anda telah terdaftar menjadi peserta TCI Universitas Udayana, Silahkan login dan memilih kelas course',
+                ]);
             // END
         // END
 

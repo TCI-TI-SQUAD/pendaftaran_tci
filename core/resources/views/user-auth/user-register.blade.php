@@ -3,83 +3,83 @@
 @section('form')
             <img src="{{ asset('asset\image\user-login\temple.png') }}" alt="">
             <div class="form-container animated fadeInUp p-3">
-                <form action="{{ Route('user.post.register') }}" method="POST">
+                <form action="{{ Route('user.post.register') }}" enctype='multipart/form-data' method="POST" onsubmit="myButton.disabled = true; return true;">
                     {{ csrf_field() }}
                     {{ method_field('post') }}
                     <h4 class="font-weight-bold text-center mt-5" style="margin: auto;">Register</h4>
                     
                     <label for="exampleForm2" class="mt-5">Nama Lengkap <span class="text-danger">*</span></label>
                     @if($errors->has('name'))
-                        <input name="name" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1 border border-danger" min="5" max="50" required>
+                        <input name="name" value="{{ old('name') }}" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1 border border-danger" minlength="5" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('name') }}</small></p>
                     @else
-                        <input name="name" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1" min="5" max="50" required>
+                        <input name="name" value="{{ old('name') }}" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1" minlength="5" maxlength="50" required>
                     @endif
 
                     <label for="exampleForm2" class="mt-2">Username <span class="text-danger">*</span></label>
                     @if($errors->has('username'))
-                        <input name="username" type="text" placeholder="Penentuan username bebas" class="form-control mt-1 border border-danger" min="3" max="20" required>
+                        <input name="username" value="{{ old('username') }}" type="text" placeholder="Penentuan username bebas" class="form-control mt-1 border border-danger" minlength="3" maxlength="15" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('username') }}</small></p>
                     @else
-                        <input name="username" type="text" placeholder="Penentuan username bebas" class="form-control mt-1" min="3" max="20" required>
+                        <input name="username" value="{{ old('username') }}" type="text" placeholder="Penentuan username bebas" class="form-control mt-1" minlength="3" maxlength="15" required>
                     @endif
 
                     <label for="exampleForm2" class="mt-2">Email <span class="text-danger">*</span></label>
                     @if($errors->has('email'))
-                        <input name="email" type="email" class="form-control mt-1 border border-danger" min="3" max="50" required>
+                        <input name="email" value="{{ old('email') }}" type="email" class="form-control mt-1 border border-danger" minlength="5" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('email') }}</small></p>
                     @else
-                        <input name="email" type="email" class="form-control mt-1" min="3" max="50" required>
+                        <input name="email" value="{{ old('email') }}" type="email" class="form-control mt-1" minlength="5" maxlength="50" required>
                     @endif
                     
                     <label for="exampleForm2" class="mt-2">Phone Number <span class="text-danger">*</span></label>
                     @if($errors->has('phone_number'))
-                        <input name="phone_number" type="number" placeholder="Ex. +62999999999 " class="form-control mt-1 border border-danger" min="5" max="100" required>
+                        <input name="phone_number" value="{{ old('phone_number') }}" type="number" placeholder="Ex. +62999999999 " class="form-control mt-1 border border-danger" pattern="\d*" minlength="7" maxlength="15" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('phone_number') }}</small></p>
                     @else
-                        <input name="phone_number" type="password" placeholder="Ex. +62999999999 " class="form-control mt-1" min="5" max="100" required>
+                        <input name="phone_number" value="{{ old('phone_number') }}" type="number" placeholder="Ex. +62999999999 " class="form-control mt-1" pattern="\d*" minlength="7" maxlength="15" required>
                     @endif 
 
                     <label for="exampleForm2" class="mt-2">Line ID <span class="text-danger">*</span></label>
                     @if($errors->has('line'))
-                        <input name="line" type="text" placeholder="ID Line Aktif" class="form-control mt-1 border border-danger" min="3" max="50" required>
+                        <input name="line" value="{{ old('line') }}" type="text" placeholder="ID Line Aktif" class="form-control mt-1 border border-danger" minlength="3" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('line') }}</small></p>
                     @else
-                        <input name="line" type="text" placeholder="ID Line Aktif" class="form-control mt-1" min="3" max="50" required>
+                        <input name="line" value="{{ old('line') }}" type="text" placeholder="ID Line Aktif" class="form-control mt-1" minlength="3" maxlength="50" required>
                     @endif
                     
                     <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Nomor WA yang terintegrasi dengan account WA">WA Number <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                     @if($errors->has('wa'))
-                        <input name="wa" type="number" placeholder="Nomor HP terhubung WA" class="form-control mt-1 border border-danger" min="5" max="15" required>
+                        <input name="wa" value="{{ old('wa') }}" type="number" placeholder="Nomor HP terhubung WA" class="form-control mt-1 border border-danger" pattern="\d*" minlength="7" maxlength="15" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('wa') }}</small></p>
                     @else
-                        <input name="wa" type="number" placeholder="Nomor HP terhubung WA" class="form-control mt-1" min="5" max="15" required>
+                        <input name="wa" value="{{ old('wa') }}" type="number" placeholder="Nomor HP terhubung WA" class="form-control mt-1" pattern="\d*" minlength="7" maxlength="15" required>
                     @endif
 
                     <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Alamat tempat tinggal pendaftar">Alamat <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                     @if($errors->has('alamat'))
-                        <input name="alamat" type="text" placeholder="Alamat tempat tinggal lengkap" class="form-control mt-1 border border-danger" min="5" max="50" required>
+                        <input name="alamat" value="{{ old('alamat') }}" type="text" placeholder="Alamat tempat tinggal lengkap" class="form-control mt-1 border border-danger" minlength="5" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('alamat') }}</small></p>
                     @else
-                        <input name="alamat" type="text" placeholder="Alamat tempat tinggal lengkap" class="form-control mt-1" min="5" max="50" required>
+                        <input name="alamat" value="{{ old('alamat') }}" type="text" placeholder="Alamat tempat tinggal lengkap" class="form-control mt-1" minlength="5" maxlength="50" required>
                     @endif
 
                     <hr style="height:1px;background:red;">
 
                     <label for="exampleForm2" class="mt-1" data-toggle="tooltip" title="Masukkan password anda pada field ini">Password <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                     @if($errors->has('password'))
-                        <input name="password" type="password" placeholder="8-50 karakter" class="form-control mt-1 border border-danger" min="8" max="50" required>
+                        <input name="password" type="password" placeholder="8-50 karakter" class="form-control mt-1 border border-danger" minlength="5" maxlength="100" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('password') }}</small></p>
                     @else
-                        <input name="password" type="password" placeholder="8-50 karakter" class="form-control mt-1" min="8" max="50" required>
+                        <input name="password" type="password" placeholder="8-50 karakter" class="form-control mt-1" minlength="5" maxlength="100" required>
                     @endif
 
                     <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Ulangi password anda pada field ini">Password Confirmation <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                     @if($errors->has('password_confirmation'))
-                        <input name="password_confirmation" type="password" placeholder="8-50 karakter" class="form-control mt-1 border border-danger" min="8" max="50" required>
+                        <input name="password_confirmation" type="password" placeholder="8-50 karakter" class="form-control mt-1 border border-danger" minlength="5" maxlength="100" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('password_confirmation') }}</small></p>
                     @else
-                        <input name="password_confirmation" type="password" placeholder="8-50 karakter" class="form-control mt-1" min="8" max="50" required>
+                        <input name="password_confirmation" type="password" placeholder="8-50 karakter" class="form-control mt-1" minlength="5" maxlength="100" required>
                     @endif
 
                     <hr style="height:1px;background:red;">
@@ -95,7 +95,7 @@
                         </select>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('status') }}</small></p>
                     @else
-                        <select name="status" onchange="hideInputSystem(this.value)" id="status" type="text" placeholder="Pilih status" class="browser-default custom-select" required>
+                        <select name="status" onclick="hideInputSystem(this.value)" onchange="hideInputSystem(this.value)" id="status" type="text" placeholder="Pilih status" class="browser-default custom-select" required>
                             <option value="">Pilih Status</option>
                             <option value="umum">Umum</option>
                             <option value="siswa">Siswa</option>
@@ -111,7 +111,7 @@
                                 <select name="instansi" onchange="" type="text" placeholder="Pilih instansi" class="browser-default custom-select border border-danger" required>
                                         <option value="">Pilih Instansi</option>
                                     @foreach($instansis as $instansi)
-                                        <option value="$instansi->id">{{ $instansi->nama_instansi }}</option>
+                                        <option value="{{$instansi->id}}">{{ $instansi->nama_instansi }}</option>
                                     @endforeach
                                 </select>
                                 <p class="text-danger animated slideInUp"><small>{{ $errors->first('instansi') }}</small></p>
@@ -119,7 +119,7 @@
                                 <select name="instansi" onchange="" type="text" placeholder="Pilih sekolah" class="browser-default custom-select" required>
                                     <option value="">Pilih Instansi</option>
                                     @foreach($instansis as $instansi)
-                                        <option value="$instansi->id">{{ $instansi->nama_instansi }}</option>
+                                        <option value="{{$instansi->id}}">{{ $instansi->nama_instansi }}</option>
                                     @endforeach
                                 </select>
                             @endif
@@ -147,7 +147,7 @@
                             </select>
                         @endif
 
-                        <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Instansi asal pendaftar apabila tidak berasal dari instansi yang ada silahkan pilih opsi UMUM">Sekolah <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
+                        <label for="exampleForm2" class="mt-2" data-toggle="tooltip" title="Sekolah asal pendaftar">Sekolah <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                         @if($errors->has('sekolah'))
                             <select name="sekolah" id="sekolah_input" type="text" placeholder="Pilih sekolah" class="browser-default custom-select border border-danger" disabled required>
                                     <option value="">Pilih Sekolah</option>
@@ -206,23 +206,47 @@
 
                     <hr style="height:1px;background:red;">
 
-                    <label class="mt-1" data-toggle="tooltip" title="Input file kartu pengenal anda, dapat menggunakan KTP/NISN/PASSPORT. Mohon untuk memilih opsi jenis kartu sesuai dengan apa yang pendaftar input">Kartu Pengenal (KTP/NISN/PASSPORT) <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
+                    <label class="mt-1" data-toggle="tooltip" title="Input file kartu pengenal anda, dapat menggunakan KTP/NISN/KTM/PASSPORT. Mohon untuk memilih opsi jenis kartu sesuai dengan apa yang pendaftar input">Kartu Pengenal (KTP/NISN/KTM/PASSPORT) <span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
                     @if($errors->has('kartu_identitas'))
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFileLang" lang="en" required>
+                            <input type="file" name="kartu_identitas" accept="image/png, image/gif, image/jpeg" class="custom-file-input" id="customFileLang" lang="en" required>
                             <label class="custom-file-label border border-danger" for="customFileLang">Pilih File Kartu Identitas</label>
                         </div>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('kartu_identitas') }}</small></p>
                     @else
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFileLang" lang="en" required>
+                            <input type="file" name="kartu_identitas" accept="image/png, image/gif, image/jpeg" class="custom-file-input" id="customFileLang" lang="en" required>
                             <label class="custom-file-label" for="customFileLang">Pilih File Kartu Identitas</label>
                         </div>
                     @endif
 
+                    <label class="mt-4" data-toggle="tooltip" title="Input file kartu pengenal anda, dapat menggunakan KTP/NISN/KTM/PASSPORT. Mohon untuk memilih opsi jenis kartu sesuai dengan apa yang pendaftar input">Pilih Jenis Kartu yang telah diinput<span class="text-danger"> * </span><i class="fas fa-question-circle"></i></label>
 
+                    <!-- Group of default radios - option 1 -->
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="jenis_kartu_identitas" value="ktp" required>
+                        <label class="custom-control-label" for="defaultGroupExample1">KTP</label>
+                    </div>
 
-                    <button class="btn btn-block btn-success mt-5" type="submit">REGISTER</button>
+                    <!-- Group of default radios - option 2 -->
+                    <div class="custom-control custom-radio mt-2">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="jenis_kartu_identitas" value="nisn" required>
+                        <label class="custom-control-label" for="defaultGroupExample2">NISN</label>
+                    </div>
+
+                    <!-- Group of default radios - option 2 -->
+                    <div class="custom-control custom-radio mt-2">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="jenis_kartu_identitas" value="ktm" required>
+                        <label class="custom-control-label" for="defaultGroupExample3">KTM (Kartu Tanda Mahasiswa)</label>
+                    </div>
+
+                    <!-- Group of default radios - option 3 -->
+                    <div class="custom-control custom-radio mt-2">
+                        <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="jenis_kartu_identitas" value="passport" required>
+                        <label class="custom-control-label" for="defaultGroupExample4">PASSPORT</label>
+                    </div>
+
+                    <button name="myButton" class="btn btn-block btn-success mt-5" type="submit">REGISTER</button>
                     <a class="btn btn-block btn-danger mt-1" href="{{ route('user.landing-page') }}">BACK</a>
 
                     <p class="text-center mt-4">Already have an account ? <a href="{{ Route('user.login') }}">Login Here</a></p>
@@ -482,5 +506,14 @@
         }
     // AKHIR
 
+    // SWEETALERT2
+    
+    @if(Session::has('status'))
+        Swal.fire({
+            icon:  @if(Session::has('icon')){!! '"'.Session::get('icon').'"' !!} @else 'question' @endif,
+            title: @if(Session::has('title')){!! '"'.Session::get('title').'"' !!} @else 'Oppss...'@endif,
+            text: @if(Session::has('message')){!! '"'.Session::get('message').'"' !!} @else 'Oppss...'@endif,
+        });
+    @endif
 </script>
 @endpush
