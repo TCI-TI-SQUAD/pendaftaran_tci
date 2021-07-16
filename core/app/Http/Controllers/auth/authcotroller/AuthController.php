@@ -9,6 +9,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Auth;
 
 use App\PengaturanSistem;
 use App\PengaturanSocialMedia;
@@ -52,7 +53,7 @@ class AuthController extends Controller
                 $pengaturan_login = false;
             }
 
-            if($pengaturan_login){
+            if(!$pengaturan_login){
                 return redirect()
                     ->back()
                     ->with([
@@ -65,10 +66,32 @@ class AuthController extends Controller
         // END
 
         // SECURITY
-            $request->vaiidate([
-
+            $request->validate([
+                'email' => 'required|email|min:5|max:50',
+                'password' => 'required|min:5|max:100',
+                'remember_me' => 'nullable|boolean',
             ]);
         // END
+
+        // MAIN LOGIC
+            $remember = $request->remember_me == null ? false : true;
+
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password],$remember)){
+                return redirect()->route('user.dashboard');
+            }else if(Auth::viaRemember()){
+                return redirect()->route('user.dashboard');
+            }else{
+                return redirect()
+                        ->back()
+                        ->with([
+                            'status' => 'fail',
+                            'icon' => 'error',
+                            'title' => 'Email atau Password Salah',
+                            'message' => 'Periksa kembali email atau password anda',
+                        ])->withInput($request->all());
+            }
+        // END
+        
     }
 
     public function registerPost(Request $request){
@@ -270,5 +293,13 @@ class AuthController extends Controller
                 ]);
             }
             
+    }
+
+    // LOGOUT
+    public function logout(){
+        Auth::logout();
+
+        return Redirect()->Route('user.landing-page');
+
     }
 }

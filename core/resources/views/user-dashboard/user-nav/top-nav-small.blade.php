@@ -1,4 +1,4 @@
-<a href="{{ Route('user.beranda') }}" class="text-dark">
+<a href="{{ Route('user.dashboard') }}" class="text-dark">
 <div class="navigation-block-child mt-3">
         <div class="text-center" style="margin:10px;width:50px;"><i class="fas fa-home"></i></div>
         <div style="flex-grow:2;margin:10px;" class="{{ isset($home) ? 'font-weight-bold' : '' }}">Home</div>
@@ -24,7 +24,12 @@
     </div>
 </a>
 
-<a href="" style="text-decoration:none;" class="text-dark">
+<form action="{{ Route('user.post.logout') }}" method="post" id="form-logout" style="display:none;">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
+</form>
+
+<a style="text-decoration:none;" class="text-dark" onclick="document.getElementById('form-logout').submit()">
     <div class="navigation-block-child mt-3">
         <div class="text-center" style="margin:10px;width:50px;"><i class="far fa-registered"></i></div>
         <div style="flex-grow:2;margin:10px;">Log Out</div>

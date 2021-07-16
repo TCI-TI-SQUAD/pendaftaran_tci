@@ -38,6 +38,8 @@ use Illuminate\Support\Facades\Route;
 
             Route::post('register','auth\authcotroller\AuthController@registerPost')->name('user.post.register');
 
+            Route::post('logout','auth\authcotroller\AuthController@logout')->name('user.post.logout');
+
             // AJAX
                 // AJAX GET FAKULTAS
                     Route::post('/getfakultas','auth\authcotroller\AuthController@getFakultas')->name('user.ajax.getFakultas');
@@ -51,17 +53,22 @@ use Illuminate\Support\Facades\Route;
                     Route::post('/getsekolah','auth\authcotroller\AuthController@getSekolah')->name('user.ajax.getSekolah');
                 // END
             // END
+
         // AKHIR
 
-        // USER DASHBOARD
-            Route::get('/beranda', function () {
-                return view('user-dashboard.user-dashboard-beranda');
-            })->name('user.beranda');
-
-            Route::get('/pendaftaran', function () {
-                return view('user-dashboard.user-pendaftaran');
-            })->name('user.pendaftaran');
-        // AKHIR
+        // AUTH MIDDLEWARE
+            Route::middleware('auth')->group(function(){
+                // USER DASHBOARD
+                    Route::get('/beranda', function () {
+                        return view('user-dashboard.user-dashboard-beranda');
+                    })->name('user.dashboard');
+    
+                    Route::get('/pendaftaran', function () {
+                        return view('user-dashboard.user-pendaftaran');
+                    })->name('user.pendaftaran');
+                // AKHIR
+            });
+        // END
     });
 // AKHIR
 

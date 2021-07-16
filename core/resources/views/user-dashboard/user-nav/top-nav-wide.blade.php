@@ -1,5 +1,5 @@
 <li>        
-    <a class="text-dark {{ isset($home) ? 'font-weight-bold' : '' }}" href="{{ Route('user.beranda') }}">Home</a>
+    <a class="text-dark {{ isset($home) ? 'font-weight-bold' : '' }}" href="{{ Route('user.dashboard') }}">Home</a>
 </li>
 <li>
     <a class="text-dark {{ isset($pendaftaran) ? 'font-weight-bold' : '' }}" href="{{ Route('user.pendaftaran') }}">Pendaftaran</a>

@@ -23,17 +23,17 @@
                 </h4>
 
                 <label for="exampleForm2" class="mt-5">Email</label>
-                <input name="email" type="text" id="exampleForm2" class="form-control mt-1 @if($errors->has('email')){{ 'border border-danger' }}@endif">
+                <input name="email" type="text" id="exampleForm2" class="form-control mt-1 @if($errors->has('email')){{ 'border border-danger' }}@endif" minlength="5" maxlength="50">
                 @if($errors->has('email'))<small class="text-danger">{{ $errors->first('email') }}</small>@endif
 
                 <label class="mt-3" for="exampleForm2">Password</label>
-                <input name="password" type="text" id="exampleForm2" class="form-control mt-1 @if($errors->has('email')){{ 'border border-danger' }}@endif">
+                <input name="password" type="text" id="exampleForm2" class="form-control mt-1 @if($errors->has('email')){{ 'border border-danger' }}@endif" minlength="5" maxlength="100">
                 @if($errors->has('password'))<small class="text-danger">{{ $errors->first('password') }}</small>@endif
 
                 <div class="row mt-3">
                     <div class="col m-2">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" value="1" name="remember_me">
                             <label class="custom-control-label" for="defaultUnchecked">Remember me</label>
                         </div>
                     </div>

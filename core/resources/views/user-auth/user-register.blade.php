@@ -8,7 +8,7 @@
                     {{ method_field('post') }}
                     <h4 class="font-weight-bold text-center mt-5" style="margin: auto;">Register</h4>
                     
-                    <label for="exampleForm2" class="mt-5">Nama Lengkap <span class="text-danger">*</span></label>
+                    <label class="mt-5">Nama Lengkap <span class="text-danger">*</span></label>
                     @if($errors->has('name'))
                         <input name="name" value="{{ old('name') }}" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1 border border-danger" minlength="5" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('name') }}</small></p>
@@ -16,7 +16,7 @@
                         <input name="name" value="{{ old('name') }}" type="text" placeholder="Sesuai dengan kartu KTP" class="form-control mt-1" minlength="5" maxlength="50" required>
                     @endif
 
-                    <label for="exampleForm2" class="mt-2">Username <span class="text-danger">*</span></label>
+                    <label class="mt-2">Username <span class="text-danger">*</span></label>
                     @if($errors->has('username'))
                         <input name="username" value="{{ old('username') }}" type="text" placeholder="Penentuan username bebas" class="form-control mt-1 border border-danger" minlength="3" maxlength="15" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('username') }}</small></p>
@@ -24,7 +24,7 @@
                         <input name="username" value="{{ old('username') }}" type="text" placeholder="Penentuan username bebas" class="form-control mt-1" minlength="3" maxlength="15" required>
                     @endif
 
-                    <label for="exampleForm2" class="mt-2">Email <span class="text-danger">*</span></label>
+                    <label class="mt-2">Email <span class="text-danger">*</span></label>
                     @if($errors->has('email'))
                         <input name="email" value="{{ old('email') }}" type="email" class="form-control mt-1 border border-danger" minlength="5" maxlength="50" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('email') }}</small></p>
@@ -32,7 +32,7 @@
                         <input name="email" value="{{ old('email') }}" type="email" class="form-control mt-1" minlength="5" maxlength="50" required>
                     @endif
                     
-                    <label for="exampleForm2" class="mt-2">Phone Number <span class="text-danger">*</span></label>
+                    <label class="mt-2">Phone Number <span class="text-danger">*</span></label>
                     @if($errors->has('phone_number'))
                         <input name="phone_number" value="{{ old('phone_number') }}" type="number" placeholder="Ex. +62999999999 " class="form-control mt-1 border border-danger" pattern="\d*" minlength="7" maxlength="15" required>
                         <p class="text-danger animated slideInUp"><small>{{ $errors->first('phone_number') }}</small></p>
