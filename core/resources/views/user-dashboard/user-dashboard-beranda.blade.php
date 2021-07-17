@@ -18,7 +18,7 @@
 @section('content')
 
     <!-- PROFILE -->
-    <div class="profile-wrapper p-2">
+    <div class="profile-wrapper p-2 animated slideInLeft">
         <!-- Card -->
         <div class="card z-depth-1" style="height:100%;">
 
@@ -32,8 +32,22 @@
                 </div>
 
                 <div class="col text-left mt-3">
-                    <h5 style="font-size:18px;"><b>Good Morning !</b></h5>
-                    <h5 style="font-size:12px;">Alsan</h5>
+                    <h5 style="font-size:18px;"><b>
+                    @if(isset($jam))
+                        @if($jam >= 0 && $jam < 10)
+                            Selamat Pagi !
+                        @elseif($jam >= 10 && $jam < 15)
+                            Selamat Siang !
+                        @elseif($jam >= 15 && $jam < 18)
+                            Selamat Sore !
+                        @elseif($jam >= 18 && $jam < 24)
+                            Selamat Malam !
+                        @else
+                            Selamat Datang
+                        @endif
+                    @endif
+                    </b></h5>
+                    <h5 style="font-size:14px;">{{ strtoupper(Auth::user()->username) }}</h5>
                 </div>
             </div>
         </div>
@@ -42,29 +56,29 @@
             <div class="row">
                 <div class="col">
                     <!-- Default input -->
-                    <label for="exampleForm2">No Pelajar TCI</label>
-                    <input type="text" id="exampleForm2" class="form-control" value="1805551029" readonly>
+                    <label for="exampleForm1">No Pelajar TCI</label>
+                    <input type="text" id="exampleForm1" class="form-control" value="{{ Auth::user()->nomor_pelajar_tci }}" readonly>
                 </div>
             </div>
             <div class="row">
                 <div class="col mt-3">
                     <!-- Default input -->
                     <label for="exampleForm2">Nama Pelajar</label>
-                    <input type="text" id="exampleForm2" class="form-control" value="I Putu Alin Winata Gotama" readonly>
+                    <input type="text" id="exampleForm2" class="form-control" value="{{ Auth::user()->name }}" readonly>
                 </div>
             </div>
             <div class="row">
                 <div class="col mt-3">
                     <!-- Default input -->
-                    <label for="exampleForm2">Email</label>
-                    <input type="text" id="exampleForm2" class="form-control" value="alingotama14@gmail.com" readonly>
+                    <label for="exampleForm3">Email</label>
+                    <input type="text" id="exampleForm3" class="form-control" value="{{ Auth::user()->email }}" readonly>
                 </div>
             </div>
             <div class="row">
                 <div class="col mt-3">
                     <!-- Default input -->
-                    <label for="exampleForm2">No HP.</label>
-                    <input type="text" id="exampleForm2" class="form-control" value="081246082357" readonly>
+                    <label for="exampleForm4">No HP.</label>
+                    <input type="text" id="exampleForm4" class="form-control" value="{{ Auth::user()->phone_number }}" readonly>
                 </div>
             </div>
         </div>
@@ -77,29 +91,23 @@
     <!-- END PROFILE -->
 
     <!-- COUNTDOWN -->
-    <div class="countdown">
+    <div class="countdown animated slideInRight">
             <!-- Swiper -->
             <div class="swiper-container mySwiper pb-4 card m-2 z-depth-1">
 
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide d-flex justify-content-center align-items-center">
-                            <div class="m-3">
-                                <h5 class="text-center m-3">Pendaftaran Batch A</h5>
-                                <div id="flipdown" class="flipdown"></div>
-                            </div>
-                    </div>
-                    <div class="swiper-slide d-flex justify-content-center align-items-center">
-                            <div class="m-3">
-                                <h5 class="text-center m-3">Pendaftaran Batch A</h5>
-                                <div id="flipdown2" class="flipdown"></div>
-                            </div>
-                    </div>
-                    <div class="swiper-slide d-flex justify-content-center align-items-center">
-                            <div class="m-3">       
-                                <h5 class="text-center m-3">Pendaftaran Batch A</h5>
-                                <div id="flipdown3" class="flipdown"></div>
-                            </div>
-                    </div>
+                    @if(isset($pendaftarans))
+                        @if(count($pendaftarans) > 0)
+                            @foreach($pendaftarans as $index => $pendaftaran)
+                                <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                        <div class="m-3">
+                                            <h5 class="text-center m-3">{{ $pendaftaran->nama_pendaftaran }}</h5>
+                                            <div id="{{ 'flipdown'.$index }}" class="flipdown"></div>
+                                        </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    @endif
                 </div>
                 
                 <div class="swiper-pagination"></div>
@@ -109,7 +117,7 @@
     <!-- END COUNTDOWN -->
 
     <!-- PENGUMUMAN -->
-    <div class="pengumuman p-2" style="white-space: nowrap;">
+    <div class="pengumuman p-2 animated slideInUp" style="white-space: nowrap;">
 
         <div class="card card-pengumuman"  style="white-space: normal;">
             <!-- Card image -->
@@ -196,12 +204,15 @@
         $('#navigation-button-close').click(function(){
             $('#navigation-block').toggleClass('active');
         })
-        let flipdown = new FlipDown(1625868870,'flipdown');
-            flipdown.start();
-        let flipdown2 = new FlipDown(1625868870,'flipdown2');
-            flipdown2.start();
-        let flipdown3 = new FlipDown(1625868870,'flipdown3');
-            flipdown3.start();
+
+        @if(isset($pendaftarans))
+            @if(count($pendaftarans) > 0)
+                @foreach($pendaftarans as $index => $pendaftaran)
+                let flipdown{{ $index }} = new FlipDown({{ date_timestamp_get(date_create($pendaftaran->tanggal_selesai_pendaftaran)) }},'flipdown{{ $index }}');
+                    flipdown{{ $index }}.start();
+                @endforeach
+            @endif
+        @endif
     });
 </script>
 <script>
@@ -217,5 +228,15 @@
           clickable: true,
         },
       });
+        // SWEETALERT2
+            @if(Session::has('status'))
+                Swal.fire({
+                    icon:  @if(Session::has('icon')){!! '"'.Session::get('icon').'"' !!} @else 'question' @endif,
+                    title: @if(Session::has('title')){!! '"'.Session::get('title').'"' !!} @else 'Oppss...'@endif,
+                    text: @if(Session::has('message')){!! '"'.Session::get('message').'"' !!} @else 'Oppss...'@endif,
+                });
+            @endif
+        // END
 </script>
+
 @endpush

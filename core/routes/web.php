@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // LANDING PAGE
-    Route::get('/',function(){
-        return view('user-landing-page.landing-page');
-    })->name('user.landing-page');
+    Route::get('/','landingpage\LandingPageController@index')->name('user.landing-page');
 // AKHIR
 
 // ABOUT PAGE
@@ -59,13 +57,11 @@ use Illuminate\Support\Facades\Route;
         // AUTH MIDDLEWARE
             Route::middleware('auth')->group(function(){
                 // USER DASHBOARD
-                    Route::get('/beranda', function () {
-                        return view('user-dashboard.user-dashboard-beranda');
-                    })->name('user.dashboard');
-    
-                    Route::get('/pendaftaran', function () {
-                        return view('user-dashboard.user-pendaftaran');
-                    })->name('user.pendaftaran');
+                    Route::get('/beranda','usercontroller\UserHomeController@index')->name('user.dashboard');
+                // AKHIR
+
+                // USER PENDAFTARAN
+                    Route::get('/pendaftaran/{nama?}','usercontroller\UserPendaftaranController@index')->name('user.pendaftaran');
                 // AKHIR
             });
         // END

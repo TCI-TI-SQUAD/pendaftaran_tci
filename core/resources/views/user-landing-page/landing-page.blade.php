@@ -28,30 +28,37 @@
                 <div class="swiper-container mySwiper pb-4">
 
                     <div class="swiper-wrapper">
-
-                        <div class="swiper-slide d-flex justify-content-center align-items-center">
-                                <div class="m-3">
-                                    <h5 class="text-center m-3"><b>Pendaftaran Batch A</b></h5>
-                                    <div id="flipdown" class="flipdown"></div>
+                        @if(isset($pendaftarans))
+                            @if(count($pendaftarans) > 0)
+                                @foreach($pendaftarans as $index => $pendaftaran)
+                                    <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                            <div class="m-3">
+                                                <h5 class="text-center m-3"><b>{{ $pendaftaran->nama_pendaftaran }}</b></h5>
+                                                <div id="flipdown{{ $index }}" class="flipdown"></div>
+                                            </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                        <div class="m-3">
+                                            <h5 class="text-center m-3"><b>Belum Ada Pendaftaran</b></h5>
+                                        </div>
                                 </div>
-                        </div>
-
-                        <div class="swiper-slide d-flex justify-content-center align-items-center">
-                                <div class="m-3">
-                                    <h5 class="text-center m-3"><b>Pendaftaran Batch A</b></h5>
-                                    <div id="flipdown2" class="flipdown"></div>
-                                </div>
-                        </div>
-
-                        <div class="swiper-slide d-flex justify-content-center align-items-center">
-                                <div class="m-3">       
-                                    <h5 class="text-center m-3"><b>Pendaftaran Batch A</b></h5>
-                                    <div id="flipdown3" class="flipdown"></div>
-                                </div>
-                        </div>
+                            @endif
+                        @else
+                            <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                    <div class="m-3">
+                                        <h5 class="text-center m-3"><b>Belum Ada Pendaftaran</b></h5>
+                                    </div>
+                            </div>
+                        @endif
                     </div>
 
+            @if(isset($pendaftarans))
+                @if(count($pendaftarans) > 0)
                     <div class="swiper-pagination"></div>
+                @endif
+            @endif
 
                 </div>
 
@@ -72,12 +79,15 @@
             $('#navigation-button-close').click(function(){
                 $('#navigation-block').toggleClass('active');
             })
-            let flipdown = new FlipDown(1626111730,'flipdown');
-                flipdown.start();
-            let flipdown2 = new FlipDown(1626111730,'flipdown2');
-                flipdown2.start();
-            let flipdown3 = new FlipDown(1626111730,'flipdown3');
-                flipdown3.start();
+
+            @if(isset($pendaftarans))
+                @if(count($pendaftarans) > 0)
+                    @foreach($pendaftarans as $index => $pendaftaran)
+                        let flipdown{{ $index }} = new FlipDown({{ date_timestamp_get(date_create($pendaftaran->tanggal_selesai_pendaftaran)) }},'flipdown{{ $index }}');
+                        flipdown{{ $index }}.start();
+                    @endforeach
+                @endif
+            @endif
         });
     </script>
 

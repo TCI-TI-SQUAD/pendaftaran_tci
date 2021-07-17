@@ -20,14 +20,17 @@
     <div class="dropdown p-2 animated slideInLeft">
         <!-- Split button -->
         <div class="btn-group">
-        <button type="button" class="btn">Pendaftaran</button>
+        <button type="button" class="btn">{{ strtoupper($pendaftaran->nama_pendaftaran) }}</button>
         <button type="button" class="btn dropdown-toggle px-3 bg-primary" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Kerjasama TCI A</a>
-            <a class="dropdown-item" href="#">TCI Free Class B</a>
+            @if(isset($semua_pendaftaran))
+                @foreach($semua_pendaftaran as $index => $pendaftaran_lain)
+                    <a class="dropdown-item" href="{{ Route('user.pendaftaran',[$pendaftaran_lain->id]) }}">{{ $pendaftaran_lain->nama_pendaftaran }}</a>
+                @endforeach
+            @endif
         </div>
         </div>
     </div>
@@ -91,7 +94,8 @@
     
     <!-- PENGUMUMAN -->
     <div class="pengumuman animated slideInRight">
-        <div class="swiper-container mySwiper jumbotron  m-3 p-2 border-secondary" style="border-top:10px solid;">
+        <div class="swiper-container mySwiper jumbotron m-3 p-2 border-secondary">
+        <h5 class="text-center text-white p-2" style="margin:-10px -10px 10px -10px;background: rgb(89,15,16);background: linear-gradient(90deg, rgba(89,15,16,1) 0%, rgba(207,29,32,1) 100%);">PENGUMUMAN</h5>
 
             <div class="swiper-wrapper mb-5" style="height:50vh;overflow-x:hidden;">
 
@@ -246,5 +250,14 @@
             clickable: true,
             }
         });
+        // SWEETALERT2
+        @if(Session::has('status'))
+                Swal.fire({
+                    icon:  @if(Session::has('icon')){!! '"'.Session::get('icon').'"' !!} @else 'question' @endif,
+                    title: @if(Session::has('title')){!! '"'.Session::get('title').'"' !!} @else 'Oppss...'@endif,
+                    text: @if(Session::has('message')){!! '"'.Session::get('message').'"' !!} @else 'Oppss...'@endif,
+                });
+            @endif
+        // END
 </script>
 @endpush

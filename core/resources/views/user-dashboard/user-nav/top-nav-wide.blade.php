@@ -10,8 +10,12 @@
 <li>
     <a class="text-dark {{ isset($profile) ? 'font-weight-bold' : '' }}" href="">Profile</a>
 </li>
+
+<form action="{{ Route('user.post.logout') }}" method="post" id="form-logout-wide" style="display:none;">
+    {{ csrf_field() }}
+    {{ method_field('POST') }}
+</form>
+
 <li>
-    <a href="">
-        <button type="button" class="btn btn-outline-danger waves-effect">Log Out</button>
-    </a>
+    <button type="submit" form="form-logout-wide" class="btn btn-outline-danger waves-effect">Log Out</button>
 </li>

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Session;
 
 class Authenticate extends Middleware
 {
@@ -15,6 +16,12 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+
+            Session::Flash('status','fail');
+            Session::Flash('icon','error');
+            Session::Flash('title','Hak Akses Dibatasi !');
+            Session::Flash('message','Mohon untuk login');
+
             return Route('user.landing-page');
         }
     }
