@@ -11,6 +11,7 @@ class Kelas extends Model
 
     protected $fillable = [
         'id_pendaftaran',
+        'id_pengajar',
         'hsk',
         'nama_kelas',
         'tanggal_mulai',
@@ -24,5 +25,13 @@ class Kelas extends Model
 
     public function DetailKelas(){
         return $this->hasMany('App\DetailKelas','id_kelas','id');
+    }
+
+    public function KelasKerjasama(){
+        return $this->hasMany('App\KelasKerjasama','id_kelas','id');
+    }
+
+    public function Pengajar(){
+        return $this->belongsTo('App\Pengajar','id_pengajar','id');
     }
 }

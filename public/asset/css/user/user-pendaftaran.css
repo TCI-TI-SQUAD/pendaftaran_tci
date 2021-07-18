@@ -93,7 +93,7 @@ background: #555;
         "dropdown pengumuman"
         "kelas pengumuman"
     ;
-    grid-template-rows: auto max-content;
+    grid-template-rows: minmax(1fr,auto) auto;
     grid-template-columns: auto 500px;
 }
 

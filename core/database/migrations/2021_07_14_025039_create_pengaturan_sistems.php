@@ -34,6 +34,10 @@ class CreatePengaturanSistems extends Migration
                 'nama_pengaturan' => 'open_login',
                 'keterangan' => 'Menentukan apakah sistem memberikan akses masuk / login'
             ],
+            [
+                'nama_pengaturan' => 'open_pendaftaran',
+                'keterangan' => 'Izin untuk peserta mendaftar ke dalam kelas, Kelas akan tetap dapat dilihat apabila pengaturan ini nonaktif'
+            ],
         ]);
     }
 

@@ -305,11 +305,11 @@
             $('#sekolah_wrapper select').prop('disabled',true);
 
         }else if(status == 'instansi' ){
-
+            resetInstansi();
             $('#universitas_wrapper').css('display','none');
             $('#universitas_wrapper select').prop('disabled',true);
             $('#instansi_wrapper').css('display','block');
-            $('#instansi_wrapper select').prop('disabled',false);
+            $('#instansi_wrapper select:eq(0)').prop('disabled',false);
             $('#sekolah_wrapper').css('display','none');
             $('#sekolah_wrapper select').prop('disabled',true);
 
@@ -450,6 +450,7 @@
 
         function resetMahasiswa(){
             $('#universitas_input').val("").change();
+            $('#universitas_input').trigger('click');
         }
     // AKHIR
 
@@ -516,12 +517,14 @@
 
         function resetSiswa(){
             $('#tipe_sekolah_input').val("").change();
+            $('#tipe_sekolah_input').trigger('click');
         }
     // AKHIR
 
     // INSTANSI
         function resetInstansi(){
             $('#instansi_input').val("").change();
+            $('#instansi_input').reset('trigger');
         }
     // END
 

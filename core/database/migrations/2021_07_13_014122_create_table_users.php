@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
+
+use App\User;
 
 class CreateTableUsers extends Migration
 {
@@ -17,6 +20,7 @@ class CreateTableUsers extends Migration
             $table->id();
             $table->foreignId('id_instansi');
             $table->enum('status',['umum','siswa','mahasiswa','instansi']);
+            $table->enum('hsk',['pemula','hsk 1','hsk 2','hsk 3','hsk 4','hsk 5','hsk 6']);
             $table->string('name',100);
             $table->string('nomor_pelajar_tci',100)->unique();
             $table->string('username',100)->unique();
@@ -34,6 +38,21 @@ class CreateTableUsers extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
+
+        User::create([
+            'id_instansi' => 1,
+            'status' => 'mahasiswa',
+            'hsk' => 'pemula',
+            'name' => 'I Putu Alin Winata Gotama',
+            'nomor_pelajar_tci' => '2021210001',
+            'username' => 'alsan',
+            'password' => Hash::make('alsan4154'),
+            'email' => 'alingotama@gmail.com',
+            'phone_number' => '081246082357',
+            'line' => 'alsan4154',
+            'wa' => '081246082357',
+            'kartu_identitas' => 'halo',
+        ]);
     }
 
     /**

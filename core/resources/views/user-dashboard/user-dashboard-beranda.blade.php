@@ -106,7 +106,21 @@
                                         </div>
                                 </div>
                             @endforeach
+                        @else
+                                <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                        <div class="m-3">
+                                            <h5 class="text-center m-3">Belum ada pendaftaran course</h5>
+                                            <div id="flipdown" class="flipdown"></div>
+                                        </div>
+                                </div>
                         @endif
+                    @else
+                                <div class="swiper-slide d-flex justify-content-center align-items-center">
+                                        <div class="m-3">
+                                            <h5 class="text-center m-3">Belum ada pendaftaran course</h5>
+                                            <div id="flipdown" class="flipdown"></div>
+                                        </div>
+                                </div>
                     @endif
                 </div>
                 
@@ -211,8 +225,15 @@
                 let flipdown{{ $index }} = new FlipDown({{ date_timestamp_get(date_create($pendaftaran->tanggal_selesai_pendaftaran)) }},'flipdown{{ $index }}');
                     flipdown{{ $index }}.start();
                 @endforeach
+            @else
+                let flipdown = new FlipDown(0,'flipdown');
+                    flipdown.start();
             @endif
+        @else
+            let flipdown = new FlipDown(0,'flipdown');
+                flipdown.start();
         @endif
+        
     });
 </script>
 <script>

@@ -18,7 +18,8 @@ class CreateKelas extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_pendaftaran');
-            $table->enum('hsk',['hsk 1','hsk 2','hsk 3','hsk 4','hsk 5','hsk 6']);
+            $table->foreignId('id_pengajar');
+            $table->enum('hsk',['pemula','hsk 1','hsk 2','hsk 3','hsk 4','hsk 5','hsk 6']);
             $table->string('nama_kelas',50)->unique();
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
@@ -34,17 +35,20 @@ class CreateKelas extends Migration
         Kelas::insert([
             [
                 'id_pendaftaran' => 1,
+                'id_pengajar' => 1,
                 'hsk' => 'hsk 1',
-                'nama_kelas' => 'Kelas A',
+                'nama_kelas' => 'Kelas Mandarin For Children',
                 'tanggal_mulai' => '2021-07-18',
                 'tanggal_selesai' => '2021-08-20',
-                'isBerbayar' => 0,
-                'harga' => 0,
+                'isBerbayar' => 1,
+                'harga' => 120000,
                 'kuota' => 50,
+                'logo_kelas' => 'mandarin_class_1.jpg',
                 'status' => 'buka',
             ],
             [
                 'id_pendaftaran' => 1,
+                'id_pengajar' => 1,
                 'hsk' => 'hsk 1',
                 'nama_kelas' => 'Kelas B',
                 'tanggal_mulai' => '2021-07-18',
@@ -52,10 +56,12 @@ class CreateKelas extends Migration
                 'isBerbayar' => 0,
                 'harga' => 0,
                 'kuota' => 50,
+                'logo_kelas' => 'default.jpg',
                 'status' => 'buka',
             ],
             [
                 'id_pendaftaran' => 1,
+                'id_pengajar' => 1,
                 'hsk' => 'hsk 1',
                 'nama_kelas' => 'Kelas C',
                 'tanggal_mulai' => '2021-07-18',
@@ -63,6 +69,7 @@ class CreateKelas extends Migration
                 'isBerbayar' => 0,
                 'harga' => 0,
                 'kuota' => 50,
+                'logo_kelas' => 'default.jpg',
                 'status' => 'buka',
             ],
         ]);

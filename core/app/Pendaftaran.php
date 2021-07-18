@@ -13,4 +13,8 @@ class Pendaftaran extends Model
     public function Kelas(){
         return $this->hasMany('App\Kelas','id_pendaftaran','id');
     }
+
+    public function PengumumanPendaftaran(){
+        return $this->hasMany('App\PengumumanPendaftaran','id_pendaftaran','id');
+    }
 }

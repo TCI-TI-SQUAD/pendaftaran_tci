@@ -26,8 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $social_medias = PengaturanSocialMedia::all();
-        View::share('social_medias',$social_medias);
+        // $social_medias = PengaturanSocialMedia::all();
+        // View::share('social_medias',$social_medias);
 
         Schema::defaultStringLength(191);
     }

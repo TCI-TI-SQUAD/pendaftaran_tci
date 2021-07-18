@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Validator;
 use Carbon\Carbon;
+use Auth;
 
 use App\Pendaftaran;
 
@@ -18,7 +19,7 @@ class UserPendaftaranController extends Controller
         ]);
 
         if($validator->fails()){
-            return Redirect()->Route('user.pendaftaran')->with([
+            return Redirect()->back()->with([
                 'status' => 'fail',
                 'icon' => 'error',
                 'title' => 'Pendaftaran Tidak Ditemukan',
@@ -27,49 +28,45 @@ class UserPendaftaranController extends Controller
         }
 
         // MAIN LOGIC
-            if(Pendaftaran::where('status','aktif')->count() > 0){
+            if(
+                Pendaftaran::where('status','aktif')->whereDate('tanggal_mulai_pendaftaran','<=',date('Y-m-d'))
+                            ->whereDate('tanggal_selesai_pendaftaran','>',date('Y-m-d'))->count() > 0
+            ){
                 try{
-                    if($id != null){
-                        $pendaftaran = Pendaftaran::with([
-                            'Kelas' => function($query){
-                                            $query->where('status','buka')->withCount('DetailKelas')->get();
-                                        }])
-                                        ->whereDate('tanggal_mulai_pendaftaran','<=',date('Y-m-d'))
-                                        ->whereDate('tanggal_selesai_pendaftaran','>',date('Y-m-d'))
-                                        ->where('status','aktif')->findOrFail($id);
-                        
-                    }
-                    else{
-                        $pendaftaran = Pendaftaran::with([
-                            'Kelas' => function($query){
-                                            $query->where('status','buka')->withCount('DetailKelas')->get();
-                                        }])
-                                        ->whereDate('tanggal_mulai_pendaftaran','<=',date('Y-m-d'))
-                                        ->whereDate('tanggal_selesai_pendaftaran','>',date('Y-m-d'))
-                                        ->where('status','aktif')->firstOrFail();
-                    }
-
-                    $pendaftaran->setRelation('Kelas',$pendaftaran->Kelas->filter(function($value,$key){
-                        if(
-                            $value->kuota <= $value->detail_kelas_count ||
-                            Carbon::create($value->tanggal_mulai)->diffInMinutes(Carbon::now(),false) >= 0
-                        ){
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    }));
-
                     // AMBIL SEMUA PENDAFTARAN
                     $semua_pendaftaran = Pendaftaran::where('status','aktif')
                                                         ->whereDate('tanggal_mulai_pendaftaran','<=',date('Y-m-d'))
                                                         ->whereDate('tanggal_selesai_pendaftaran','>',date('Y-m-d'))
-                                                        ->get(['id','nama_pendaftaran']);
+                                                        ->get();
+                    if($id != null){
+                        $pendaftaran = $semua_pendaftaran->where('id',$id)->first();
+                    }
+                    else{
+                        $pendaftaran = $semua_pendaftaran->first();
+                    }
+                    
+                    $pendaftaran->setRelation('Kelas',$pendaftaran->Kelas->filter(function($value,$key) use ($pendaftaran){
+                        if($value->KelasKerjasama()->where('status',Auth::user()->status)->where('id_instansi',Auth::user()->id_instansi)->get()->isEmpty()){
+                            return false;
+                        }else if(
+                            $value->kuota <= $value->DetailKelas->count() ||
+                            $value->status == 'tutup'
+                        ){
+                            $pendaftaran->Kelas[$key]->isLocked = true;
+                            $pendaftaran->Kelas[$key]->Pengajar;
+                            return true;
+                        }else{
+                            $pendaftaran->Kelas[$key]->isLocked = false;
+                            $pendaftaran->Kelas[$key]->Pengajar;
+                            return true;
+                        }
+                    })->sortBy('isLocked')->values());
 
+                    
                     return view('user-dashboard.user-pendaftaran',compact(['pendaftaran','semua_pendaftaran']));
 
                 }catch(ModelNotFoundException $err){
-                    return Redirect()->Route('user.pendaftaran')->with([
+                    return Redirect()->back()->with([
                         'status' => 'fail',
                         'icon' => 'error',
                         'title' => 'Pendaftaran Tidak Ditemukan',
@@ -77,7 +74,7 @@ class UserPendaftaranController extends Controller
                     ]);
                 }
             }else{
-                return Redirect()->Route('user.pendaftaran')->with([
+                return Redirect()->back()->with([
                     'status' => 'fail',
                     'icon' => 'error',
                     'title' => 'Belum Ada Pendaftaran Courses',
