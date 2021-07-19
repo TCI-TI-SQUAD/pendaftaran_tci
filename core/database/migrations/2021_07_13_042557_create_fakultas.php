@@ -28,7 +28,62 @@ class CreateFakultas extends Migration
             [
                 'id_universitas' => 1,
                 'nama_fakultas' => 'Fakultas Teknik',
-                'keterangan' => 'Fakultas Tenkin Universitas Udayana'
+                'keterangan' => 'Fakultas Teknik Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Ekonomi dan Bisnis',
+                'keterangan' => 'Fakultas Ekonomi dan Bisnis Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Ilmu Budaya',
+                'keterangan' => 'Fakultas Ilmu Budaya Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas MIPA',
+                'keterangan' => 'Fakultas MIPA Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Kedokteran',
+                'keterangan' => 'Fakultas Kedokteran Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Kedokteran Hewan',
+                'keterangan' => 'Fakultas Kedokteran Hewan Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Pertanian',
+                'keterangan' => 'Fakultas Pertanian Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Teknologi Pertanian',
+                'keterangan' => 'Fakultas Teknologi Pertanian Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Hukum',
+                'keterangan' => 'Fakultas Hukum Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas FISIP',
+                'keterangan' => 'Fakultas FISIP Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Kelautan dan Perikanan',
+                'keterangan' => 'Fakultas Kelautan dan Perikanan Universitas Udayana'
+            ],
+            [
+                'id_universitas' => 1,
+                'nama_fakultas' => 'Fakultas Pariwisata',
+                'keterangan' => 'Fakultas Pariwisata Universitas Udayana'
             ],
             [
                 'id_universitas' => 2,
